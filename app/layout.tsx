@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Koh_Santepheap } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -9,15 +9,15 @@ import { ReduxProvider } from "@/redux/Provider";
 import { ToastContainer } from "react-toastify";
 import { Toaster } from "react-hot-toast";
 
-const poppins = Poppins({
+const koh_santepheap = Koh_Santepheap({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  variable: "--font-poppins",
+  weight: ["100", "300", "400", "700", "900"],
+  variable: "--font-koh_santepheap",
 });
 
 export const metadata: Metadata = {
-  title: "Buraq Garment",
-  description: "Buraq Garment",
+  title: "Supermarket",
+  description: "Supermarket",
 };
 
 export default function RootLayout({
@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.variable} font-poppins antialiased bg-white overflow-x-hidden!`}
+        className={`${koh_santepheap.variable} font-koh_santepheap antialiased bg-white overflow-x-hidden!`}
       >
         <LanguageProvider>
           <ReduxProvider>

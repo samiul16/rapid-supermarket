@@ -16,20 +16,38 @@ const HeroSection = () => {
   // Array of slide content
   const slides = [
     {
-      image: "/landing/hero-1.png",
-      title: "Premium Quality Manufacturing Excellence",
+      image: "/landing/supermarket-hero-1.png",
+      title: (
+        <>
+          Organic <span className="text-green-600">Goodness</span>
+          <br />
+          EveryDay Greatness
+        </>
+      ),
       subtitle:
         "Experience world-class apparel design and production. From initial concept to completion, we deliver meticulously crafted clothing that meets international standards for quality and style.",
     },
     {
-      image: "/landing/hero-2.jpeg",
-      title: "Al Buraq: Soaring Beyond Expectations in Garment Excellence",
+      image: "/landing/supermarket-hero-1.png",
+      title: (
+        <>
+          Organic <span className="text-green-600">Goodness</span>
+          <br />
+          EveryDay Greatness
+        </>
+      ),
       subtitle:
         "Unleash your brand's potential with meticulously crafted apparel and exquisite embroidery. We combine precision manufacturing with artistic detail to bring your vision to life, reflecting unparalleled quality and style.",
     },
     {
-      image: "/landing/hero-3.jpg",
-      title: "Premium Apparel & Embroidery, Delivered with Al Buraq Precision",
+      image: "/landing/supermarket-hero-1.png",
+      title: (
+        <>
+          Organic <span className="text-green-600">Goodness</span>
+          <br />
+          EveryDay Greatness
+        </>
+      ),
       subtitle:
         "From concept to final stitch, experience world-class design and production tailored to your exact needs. Our commitment to quality ensures every garment and every embroidery detail meets the highest international standards.",
     },
@@ -49,16 +67,15 @@ const HeroSection = () => {
     AOS.refresh();
   }, [currentSlide]);
 
-  // Auto-slide functionality - slides every 3 seconds
+  // Auto-slide functionality - slides every 4 seconds
   useEffect(() => {
     const autoSlideInterval = setInterval(() => {
       if (!isTransitioning) {
         setIsTransitioning(true);
         setCurrentSlide((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
       }
-    }, 4000); // 4 seconds
+    }, 4000);
 
-    // Clean up interval on component unmount
     return () => clearInterval(autoSlideInterval);
   }, [isTransitioning, totalSlides]);
 
@@ -150,6 +167,9 @@ const HeroSection = () => {
         </div>
       ))}
 
+      {/* Black Overlay */}
+      <div className="absolute inset-0 bg-black/40 z-5"></div>
+
       {/* Slide Transition Overlay */}
       <div
         className={`absolute inset-0 bg-black/20 transition-opacity duration-300 pointer-events-none ${
@@ -195,7 +215,7 @@ const HeroSection = () => {
               disabled={isTransitioning}
               className={`h-3 rounded-full transition-all duration-500 cursor-pointer transform hover:scale-125 active:scale-90 ${
                 currentSlide === index
-                  ? "bg-sky-500 w-8 shadow-lg"
+                  ? "bg-[#A40B00] w-8 shadow-lg"
                   : "bg-white/50 hover:bg-white/70 w-3"
               } ${isTransitioning ? "opacity-50 cursor-not-allowed" : ""}`}
               style={{
@@ -218,35 +238,18 @@ const HeroSection = () => {
         >
           <button
             onClick={() => router.push("/products")}
-            className="bg-gradient-to-r from-cyan-400/90 to-blue-500 text-white font-bold text-lg md:text-xl py-4 px-8 rounded-full flex items-center gap-3 hover:from-cyan-500 hover:to-blue-600 transition-all duration-300 cursor-pointer shadow-lg transform hover:scale-105 hover:shadow-xl active:scale-95 min-w-[280px] justify-center"
+            className="bg-gradient-to-r from-[#A40B00]/90 to-[#A40B00] text-white font-bold text-lg md:text-xl py-4 px-8 rounded-full flex items-center gap-3 hover:from-[#A40B00]/90 hover:to-[#A40B00] transition-all duration-300 cursor-pointer shadow-lg transform hover:scale-105 hover:shadow-xl active:scale-95 min-w-[280px] justify-center"
             style={{
               boxShadow:
-                "0 8px 25px rgba(6, 182, 212, 0.4), 0 4px 12px rgba(59, 130, 246, 0.3)",
+                "0 8px 25px rgba(164, 11, 0, 0.4), 0 4px 12px rgba(164, 11, 0, 0.3)",
             }}
           >
             <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-              <ArrowRight className="w-5 h-5 text-cyan-500" />
+              <ArrowRight className="w-5 h-5 text-[#A40B00]" />
             </div>
-            EXPLORE OUR PRODUCTS
+            SHOP NOW
           </button>
         </div>
-
-        {/* <div className="absolute bottom-8 right-[120px] md:right-[220px]">
-          <button className="w-[50px] h-[50px] rounded-full flex items-center justify-center hover:bg-[#f8eaea]/20 transition-colors cursor-pointer">
-            <Image
-              src="/landing/message.svg"
-              alt="Message"
-              width={26}
-              height={22}
-              className="w-8 h-8"
-            />
-            <div className="absolute inset-0 flex items-center justify-center gap-0.5 -translate-y-[1px]">
-              <div className="w-1 h-1 bg-red-50 rounded-full"></div>
-              <div className="w-1 h-1 bg-red-50 rounded-full"></div>
-              <div className="w-1 h-1 bg-red-50 rounded-full"></div>
-            </div>
-          </button>
-        </div> */}
       </div>
     </div>
   );
