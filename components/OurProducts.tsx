@@ -253,19 +253,19 @@ const HotProductsSection = () => {
           variants={headerVariants}
         >
           {/* Title */}
-          <h2 className="text-3xl sm:text-4xl font-bold text-sky-500 text-center">
-            Our Hot Products
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#a40b00] text-center">
+            Our Special Products
           </h2>
 
           {/* Category Filter - Updated with exact dimensions */}
-          <div className="bg-white rounded-[50px] shadow-[0px_0px_6px_0px_rgba(0,0,0,0.10)] px-6 sm:px-10 py-4 flex flex-wrap justify-center items-center gap-4 sm:gap-6">
+          <div className="bg-white rounded-[50px] shadow-[0px_0px_6px_0px_rgba(0,0,0,0.10)] px-6 sm:px-10 py-4 border-[1px] border-[#a40b00] flex flex-wrap justify-center items-center gap-4 sm:gap-6">
             {categories.map((category) => (
               <motion.button
                 key={category}
                 onClick={() => handleCategoryChange(category)}
                 className={`rounded-[50px] text-base sm:text-lg font-bold transition-all duration-300 flex items-center justify-center cursor-pointer whitespace-nowrap ${
                   activeCategory === category
-                    ? "min-w-40 h-12 px-4 bg-sky-500 text-white shadow-md" // Changed to min-width to accommodate longer text
+                    ? "min-w-40 h-12 px-4 bg-[#a40b00] text-white shadow-md" // Changed to min-width to accommodate longer text
                     : "text-neutral-900/60 hover:text-neutral-900 px-4 py-2"
                 }`}
                 whileHover={{ scale: 1.05 }}
@@ -285,7 +285,7 @@ const HotProductsSection = () => {
             <>
               <motion.button
                 onClick={goToPrevSlide}
-                className="absolute left-5 top-[50%] -translate-y-1/2 z-10 w-12 h-12 bg-sky-500 hover:bg-sky-600 text-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 cursor-pointer -ml-6 lg:-ml-20"
+                className="absolute left-5 top-[50%] -translate-y-1/2 z-10 w-12 h-12 bg-[#a40b00] hover:bg-[#a40b00] text-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 cursor-pointer -ml-6 lg:-ml-20"
                 style={{ marginTop: "15px" }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -295,7 +295,7 @@ const HotProductsSection = () => {
 
               <motion.button
                 onClick={goToNextSlide}
-                className="absolute right-5 top-[50%] -translate-y-1/2 z-10 w-12 h-12 bg-sky-500 hover:bg-sky-600 text-white rounded-full flex items-center justify-center shadow-lg cursor-pointer transition-all duration-300 -mr-6 lg:-mr-20"
+                className="absolute right-5 top-[50%] -translate-y-1/2 z-10 w-12 h-12 bg-[#a40b00] hover:bg-[#a40b00] text-white rounded-full flex items-center justify-center shadow-lg cursor-pointer transition-all duration-300 -mr-6 lg:-mr-20"
                 style={{ marginTop: "15px" }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -319,7 +319,7 @@ const HotProductsSection = () => {
                 {getCurrentProducts().map((product) => (
                   <motion.div
                     key={product.id}
-                    className="group bg-sky-100 rounded-[20px] shadow-[4px_6px_16px_0px_rgba(0,0,0,0.10)] overflow-hidden hover:shadow-[4px_10px_24px_0px_rgba(0,0,0,0.15)] transition-all duration-300"
+                    className="group bg-[#a40b00]/10 rounded-[20px] shadow-[4px_6px_16px_0px_rgba(0,0,0,0.10)] overflow-hidden hover:shadow-[4px_10px_24px_0px_rgba(0,0,0,0.15)] transition-all duration-300"
                     variants={cardVariants}
                     whileHover={{ y: -8 }}
                   >
@@ -336,24 +336,24 @@ const HotProductsSection = () => {
                       <div className="absolute top-3 right-3 flex flex-col gap-2">
                         <motion.button
                           onClick={() => toggleWishlist(product.id)}
-                          className="w-8 h-8 bg-white rounded-full shadow-[0px_2px_6px_0px_rgba(0,0,0,0.08)] flex items-center justify-center hover:bg-sky-50 cursor-pointer transition-colors"
+                          className="w-8 h-8 bg-white rounded-full shadow-[0px_2px_6px_0px_rgba(0,0,0,0.08)] flex items-center justify-center hover:bg-[#a40b00]/10 cursor-pointer transition-colors"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
                         >
                           <Heart
                             className={`w-4 h-4 ${
                               wishlist.includes(product.id)
-                                ? "fill-sky-500 text-sky-500"
-                                : "text-sky-500"
+                                ? "fill-[#a40b00] text-[#a40b00]"
+                                : "text-[#a40b00]"
                             }`}
                           />
                         </motion.button>
                         <motion.button
-                          className="w-8 h-8 bg-white rounded-full shadow-[0px_2px_6px_0px_rgba(0,0,0,0.08)] flex items-center justify-center hover:bg-sky-50 cursor-pointer transition-colors"
+                          className="w-8 h-8 bg-white rounded-full shadow-[0px_2px_6px_0px_rgba(0,0,0,0.08)] flex items-center justify-center hover:bg-[#a40b00]/10 cursor-pointer transition-colors"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
                         >
-                          <Eye className="w-4 h-4 text-sky-500" />
+                          <Eye className="w-4 h-4 text-[#a40b00]" />
                         </motion.button>
                       </div>
                     </div>
@@ -364,13 +364,13 @@ const HotProductsSection = () => {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <div className="flex items-center gap-1">
-                            <Star className="w-5 h-5 fill-sky-500 text-sky-500" />
+                            <Star className="w-5 h-5 fill-[#a40b00] text-[#a40b00]" />
                             <span className="text-black/50 font-bold text-sm sm:text-base">
                               {product.rating.toFixed(1)} ({product.reviews})
                             </span>
                           </div>
                         </div>
-                        <span className="text-sky-500 font-bold text-sm sm:text-base">
+                        <span className="text-[#a40b00] font-bold text-sm sm:text-base">
                           AED {product.price}
                         </span>
                       </div>
@@ -388,7 +388,7 @@ const HotProductsSection = () => {
                       {/* Add to Cart Button */}
                       <motion.button
                         onClick={() => handleAddToCart(product)}
-                        className="w-full py-2.5 sm:py-3 rounded-[50px] border border-sky-500 text-sky-500 font-bold text-base sm:text-lg hover:bg-sky-500 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+                        className="w-full py-2.5 sm:py-3 rounded-[50px] border border-[#a40b00] text-[#a40b00] font-bold text-base sm:text-lg hover:bg-[#a40b00]/10 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                       >
@@ -411,8 +411,8 @@ const HotProductsSection = () => {
                   onClick={() => setCurrentSlide(index)}
                   className={`h-2 rounded-full transition-all duration-300 ${
                     currentSlide === index
-                      ? "bg-sky-500 w-8"
-                      : "bg-sky-500/30 w-2 hover:bg-sky-500/50"
+                      ? "bg-[#a40b00]/10 w-8"
+                      : "bg-[#a40b00]/10 w-2 hover:bg-[#a40b00]/10"
                   }`}
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}

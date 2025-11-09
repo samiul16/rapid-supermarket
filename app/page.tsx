@@ -14,6 +14,8 @@ import TwoCard from "@/components/Two-Card";
 import Subscribe from "@/components/Subscribe";
 import DownloadOurApp from "@/components/DownloadOurApp";
 import Stats from "@/components/Stats";
+import TopCategories from "@/components/TopCategories";
+import BannerSection from "@/components/BannerSection";
 
 export default function Home() {
   useEffect(() => {
@@ -33,7 +35,10 @@ export default function Home() {
             <HeroSection />
           </div>
           <div data-aos="fade-up" data-aos-delay="100">
-            <OurOffer />
+            <TopCategories />
+          </div>
+          <div data-aos="fade-up" data-aos-delay="200">
+            <BannerSection />
           </div>
           <div data-aos="fade-up" data-aos-delay="200">
             <OurProducts />
