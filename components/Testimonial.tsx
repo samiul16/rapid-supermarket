@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState } from "react";
@@ -73,7 +72,7 @@ const TestimonialsSection = () => {
     setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
   };
 
-  // Animation variants
+  // Simple animation variants for header only
   const headerVariants: Variants = {
     hidden: { opacity: 0, y: -30 },
     visible: {
@@ -83,143 +82,86 @@ const TestimonialsSection = () => {
     },
   };
 
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 12,
-      },
-    },
-  };
-
   const TestimonialCard = ({
     testimonial,
-    index,
   }: {
     testimonial: Testimonial;
     index: number;
   }) => {
     return (
-      <motion.div
-        variants={cardVariants}
-        className="w-64 px-6 py-10 relative bg-white rounded-[20px] shadow-[0px_4px_10px_0px_rgba(0,0,0,0.08)] outline outline-1 outline-offset-[-1px] outline-red-600 inline-flex flex-col justify-start items-start gap-10 overflow-hidden"
-        whileHover={{
-          y: -10,
-          scale: 1.02,
-          boxShadow: "0px 8px 20px 0px rgba(164, 11, 0, 0.15)",
-        }}
-        transition={{ duration: 0.3 }}
-      >
+      <div className="w-full max-w-xl px-4 sm:px-6 py-6 sm:py-8 relative bg-white rounded-[20px] shadow-[0px_4px_10px_0px_rgba(0,0,0,0.08)] border border-red-200 flex flex-col justify-start items-start gap-6 overflow-hidden hover:shadow-lg hover:-translate-y-2 transition-all duration-300">
         {/* Content Container */}
-        <div className="self-stretch flex flex-col justify-start items-start gap-6">
+        <div className="self-stretch flex flex-col justify-start items-start gap-4">
           {/* Text Section */}
           <div className="self-stretch flex flex-col justify-start items-start">
             {/* Quote Icon */}
-            <motion.div
-              className="py-2 flex flex-col justify-start items-start gap-2.5"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.1 + 0.3 }}
-            >
-              <Quote className="w-10 h-7 text-stone-400" />
-            </motion.div>
+            <div className="py-1 flex flex-col justify-start items-start">
+              <Quote className="w-8 h-6 text-stone-400" />
+            </div>
 
             {/* Testimonial Text */}
-            <motion.div
-              className="self-stretch inline-flex justify-start items-start"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: index * 0.1 + 0.4 }}
-            >
-              <p className="flex-1 justify-start text-black text-lg font-normal leading-7">
+            <div className="self-stretch inline-flex justify-start items-start">
+              <p className="flex-1 justify-start text-black text-sm sm:text-base font-normal leading-6">
                 {testimonial.text}
               </p>
-            </motion.div>
+            </div>
           </div>
 
-          {/* Star Rating Placeholder */}
+          {/* Star Rating */}
           <div className="self-stretch inline-flex justify-start items-start gap-1">
             {[...Array(5)].map((_, i) => (
-              <motion.svg
+              <svg
                 key={i}
                 className="w-5 h-5 fill-yellow-400 text-yellow-400"
-                initial={{ opacity: 0, scale: 0, rotate: -180 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{
-                  delay: index * 0.1 + 0.5 + i * 0.05,
-                  type: "spring",
-                  stiffness: 200,
-                }}
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
               >
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </motion.svg>
+              </svg>
             ))}
           </div>
         </div>
 
         {/* Author Info */}
-        <motion.div
-          className="w-60 inline-flex justify-start items-center gap-4 relative z-10"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: index * 0.1 + 0.6 }}
-        >
-          <motion.img
-            src={testimonial.image}
-            alt={testimonial.name}
-            className="w-14 h-14 relative rounded-full object-cover"
-            whileHover={{ scale: 1.1, rotate: 5 }}
-          />
+        <div className="w-full inline-flex justify-start items-center gap-3 relative z-10">
+          <div className="w-12 h-12 relative rounded-full overflow-hidden flex-shrink-0">
+            <Image
+              src={testimonial.image}
+              alt={testimonial.name}
+              fill
+              className="object-cover"
+            />
+          </div>
 
-          <div className="inline-flex flex-col justify-start items-start gap-2">
-            <div className="w-40 justify-start text-black text-base font-bold leading-7">
+          <div className="inline-flex flex-col justify-start items-start gap-1 flex-1 min-w-0">
+            <div className="w-full justify-start text-black text-sm sm:text-base font-bold leading-6 truncate">
               {testimonial.name}
             </div>
-            <div className="self-stretch justify-start text-stone-500 text-sm font-normal leading-5">
+            <div className="w-full justify-start text-stone-500 text-xs sm:text-sm font-normal leading-5 truncate">
               {testimonial.role}
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Overlapped Corner Image - Bottom Right */}
-        <motion.div
-          className="absolute -bottom-4 -right-4 w-32 h-32"
-          initial={{ opacity: 0, scale: 0, rotate: -45 }}
-          animate={{ opacity: 0.2, scale: 1, rotate: 0 }}
-          transition={{ delay: index * 0.1 + 0.7, duration: 0.6 }}
-        >
-          <img
-            src={testimonial.image}
-            alt=""
-            className="w-full h-full object-cover rounded-full"
-          />
-        </motion.div>
-      </motion.div>
+        <div className="absolute -bottom-3 -right-3 w-24 h-24 opacity-15">
+          <div className="w-full h-full relative rounded-full overflow-hidden">
+            <Image
+              src={testimonial.image}
+              alt=""
+              fill
+              className="object-cover"
+            />
+          </div>
+        </div>
+      </div>
     );
   };
 
   return (
-    <div className="w-full bg-gradient-to-b from-white to-gray-50 py-16">
+    <div className="w-full bg-white py-8 sm:py-12">
       <div className="w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-28">
-        <div className="space-y-12">
+        <div className="space-y-8">
           {/* Header with Navigation */}
           <motion.div
             className="inline-flex justify-between items-end w-full"
@@ -238,12 +180,6 @@ const TestimonialsSection = () => {
               <h2 className="text-stone-800 text-3xl sm:text-4xl font-bold leading-tight">
                 What People Say About Us
               </h2>
-              <motion.div
-                className="w-20 h-1 bg-[#A40B00] rounded-full"
-                initial={{ width: 0 }}
-                animate={{ width: 80 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-              />
             </motion.div>
 
             {/* Navigation Arrows */}
@@ -276,7 +212,7 @@ const TestimonialsSection = () => {
           </motion.div>
 
           {/* Testimonials Carousel */}
-          <div className="relative overflow-hidden">
+          <div className="relative overflow-hidden pb-4 py-8">
             <div
               className="flex transition-transform duration-500 ease-in-out"
               style={{
@@ -285,13 +221,7 @@ const TestimonialsSection = () => {
             >
               {Array.from({ length: totalSlides }).map((_, slideIndex) => (
                 <div key={slideIndex} className="min-w-full flex-shrink-0">
-                  <motion.div
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.2 }}
-                  >
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 px-2">
                     {testimonials
                       .slice(
                         slideIndex * itemsPerView,
@@ -304,7 +234,7 @@ const TestimonialsSection = () => {
                           index={index}
                         />
                       ))}
-                  </motion.div>
+                  </div>
                 </div>
               ))}
             </div>

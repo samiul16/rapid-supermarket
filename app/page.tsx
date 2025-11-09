@@ -21,6 +21,7 @@ import Testimonial from "@/components/Testimonial";
 import Wishes from "@/components/Wishes";
 import Deliver from "@/components/Deliver";
 import Experience from "@/components/Experience";
+import OurBlog from "@/components/OurBlog";
 
 export default function Home() {
   useEffect(() => {
@@ -61,30 +62,17 @@ export default function Home() {
             <PopularProducts />
           </div>
           <div data-aos="fade-up" data-aos-delay="200">
+            <Experience />
+          </div>
+          <div data-aos="fade-up" data-aos-delay="200">
             <Testimonial />
           </div>
-          {/* <div data-aos="fade-up" data-aos-delay="100">
-            <FlashSale />
-          </div>
           <div data-aos="fade-up" data-aos-delay="200">
-            <ClientTestimonials />
-          </div>
-
-          <div data-aos="fade-up" data-aos-delay="200">
-            <Experience/>
-          </div>
-          <div data-aos="fade-up" data-aos-delay="100">
-            <TwoCard />
+            <OurBlog />
           </div>
           <div data-aos="fade-up" data-aos-delay="200">
             <Subscribe />
           </div>
-          <div data-aos="fade-up" data-aos-delay="100">
-            <DownloadOurApp />
-          </div>
-          <div data-aos="fade-up" data-aos-delay="200">
-            <Stats />
-          </div> */}
         </div>
       </main>
     </div>
