@@ -16,6 +16,7 @@ import DownloadOurApp from "@/components/DownloadOurApp";
 import Stats from "@/components/Stats";
 import TopCategories from "@/components/TopCategories";
 import BannerSection from "@/components/BannerSection";
+import Wishes from "@/components/Wishes";
 
 export default function Home() {
   useEffect(() => {
@@ -36,6 +37,9 @@ export default function Home() {
           </div>
           <div data-aos="fade-up" data-aos-delay="100">
             <TopCategories />
+          </div>
+          <div data-aos="fade-up" data-aos-delay="100">
+            <Wishes />
           </div>
           <div data-aos="fade-up" data-aos-delay="200">
             <BannerSection />
