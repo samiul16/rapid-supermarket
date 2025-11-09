@@ -16,6 +16,8 @@ import DownloadOurApp from "@/components/DownloadOurApp";
 import Stats from "@/components/Stats";
 import TopCategories from "@/components/TopCategories";
 import BannerSection from "@/components/BannerSection";
+import PopularProducts from "@/components/PopularProducts";
+import Testimonial from "@/components/Testimonial";
 
 export default function Home() {
   useEffect(() => {
@@ -47,9 +49,12 @@ export default function Home() {
             <TopSelling />
           </div>
           <div data-aos="fade-up" data-aos-delay="200">
-            <Recomended />
+            <PopularProducts />
           </div>
-          <div data-aos="fade-up" data-aos-delay="100">
+          <div data-aos="fade-up" data-aos-delay="200">
+            <Testimonial />
+          </div>
+          {/* <div data-aos="fade-up" data-aos-delay="100">
             <FlashSale />
           </div>
           <div data-aos="fade-up" data-aos-delay="200">
@@ -66,7 +71,7 @@ export default function Home() {
           </div>
           <div data-aos="fade-up" data-aos-delay="200">
             <Stats />
-          </div>
+          </div> */}
         </div>
       </main>
     </div>
