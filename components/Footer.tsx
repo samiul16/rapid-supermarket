@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="bg-red-900 text-white py-12 rounded-tl-[60px] rounded-tr-[60px]">
+    <footer className="bg-[#630700] text-white py-12 rounded-tl-[60px] rounded-tr-[60px]">
       <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-20 pt-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Logo and Company Info */}
@@ -283,7 +283,24 @@ const Footer = () => {
 
         {/* Bottom Section */}
         <div className="border-t border-red-200 mt-8 pt-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="flex flex-col md:flex-row justify-between items-center relative">
+            {/* Scroll to Top Button - Bottom Left */}
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="absolute -top-16 -left-12 w-10 h-10 bg-red-700 hover:bg-red-800 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 cursor-pointer"
+              aria-label="Scroll to top"
+            >
+              <svg
+                className="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                viewBox="0 0 24 24"
+              >
+                <path d="M5 15l7-7 7 7" />
+              </svg>
+            </button>
+
             <div className="flex items-center space-x-4 mb-4 md:mb-0">
               <p className="text-sm text-gray-300">
                 Developed by{" "}

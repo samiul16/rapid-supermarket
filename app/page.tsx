@@ -73,6 +73,9 @@ export default function Home() {
           <div data-aos="fade-up" data-aos-delay="200">
             <Subscribe />
           </div>
+          <div data-aos="fade-up" data-aos-delay="200">
+            <DownloadOurApp />
+          </div>
         </div>
       </main>
     </div>
