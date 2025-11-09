@@ -1,7 +1,14 @@
 import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Deliver = () => {
+  const router = useRouter();
+
+  const handleOrderNow = () => {
+    router.push("/products");
+  };
+
   return (
     <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-28 py-8">
       <div className="bg-gradient-to-r from-red-700 via-red-500 to-pink-200 rounded-4xl shadow p-8 lg:p-12 flex flex-row items-center justify-between min-h-[300px] relative ">
@@ -17,7 +24,10 @@ const Deliver = () => {
             Whether you&apos;re craving a late-night snack or need essentials in
             a hurry.
           </p>
-          <button className="bg-white text-red-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2 text-sm sm:text-base cursor-pointer">
+          <button
+            onClick={handleOrderNow}
+            className="bg-white text-red-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2 text-sm sm:text-base cursor-pointer"
+          >
             <span className="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center">
               <span className="text-white text-xs">→</span>
             </span>

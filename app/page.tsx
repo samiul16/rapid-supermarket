@@ -18,6 +18,7 @@ import TopCategories from "@/components/TopCategories";
 import BannerSection from "@/components/BannerSection";
 import Wishes from "@/components/Wishes";
 import Deliver from "@/components/Deliver";
+import Experience from "@/components/Experience";
 
 export default function Home() {
   useEffect(() => {
@@ -62,6 +63,10 @@ export default function Home() {
           </div>
           <div data-aos="fade-up" data-aos-delay="200">
             <ClientTestimonials />
+          </div>
+
+          <div data-aos="fade-up" data-aos-delay="200">
+            <Experience/>
           </div>
           <div data-aos="fade-up" data-aos-delay="100">
             <TwoCard />
