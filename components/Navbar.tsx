@@ -185,11 +185,12 @@ const Navbar = () => {
 
   // Determine navbar background and text colors
   const getNavbarStyles = () => {
+    // All pages start transparent, become semi-transparent on scroll
     return {
       navBg: isScrolled ? "bg-black/20 backdrop-blur-md" : "bg-transparent",
-      textColor: isHomePage ? "text-white" : "text-sky-400/60",
-      hoverColor: "hover:text-[var(--primary)]/70",
-      activeColor: "text-[var(--primary)] font-semibold",
+      textColor: "text-white",
+      hoverColor: "hover:text-red-900",
+      activeColor: "text-red-900 font-semibold",
     };
   };
 
@@ -245,7 +246,7 @@ const Navbar = () => {
                     : styles.textColor
                 } ${
                   styles.hoverColor
-                } group-hover:text-[var(--primary)] font-semibold transition-colors text-lg font-anek uppercase`}
+                } group-hover:text-red-900 font-semibold transition-colors text-lg font-anek uppercase`}
               >
                 PRODUCTS
               </Link>
@@ -255,7 +256,7 @@ const Navbar = () => {
                   pathname === "/career" ? styles.activeColor : styles.textColor
                 } ${
                   styles.hoverColor
-                } group-hover:text-[var(--primary)] font-semibold transition-colors text-lg font-anek uppercase`}
+                } group-hover:text-red-900 font-semibold transition-colors text-lg font-anek uppercase`}
               >
                 CAREER
               </Link>
@@ -265,7 +266,7 @@ const Navbar = () => {
                   pathname === "/about" ? styles.activeColor : styles.textColor
                 } ${
                   styles.hoverColor
-                } group-hover:text-[var(--primary)] font-semibold transition-colors text-lg font-anek uppercase`}
+                } group-hover:text-red-900 font-semibold transition-colors text-lg font-anek uppercase`}
               >
                 ABOUT
               </Link>
@@ -277,7 +278,7 @@ const Navbar = () => {
                     : styles.textColor
                 } ${
                   styles.hoverColor
-                } group-hover:text-[var(--primary)] font-semibold transition-colors text-lg font-anek uppercase`}
+                } group-hover:text-red-900 font-semibold transition-colors text-lg font-anek uppercase`}
               >
                 CONTACT
               </Link>
@@ -386,10 +387,10 @@ const Navbar = () => {
             <div className="relative" ref={cartRef}>
               <button
                 onClick={handleCartOpen}
-                className={`${styles.textColor} group-hover:text-[var(--primary)] hover:bg-white/10 p-2 rounded-full transition-colors cursor-pointer relative`}
+                className={`${styles.textColor} hover:text-red-900 hover:bg-white/10 p-2 rounded-full transition-colors cursor-pointer relative`}
                 aria-label="Shopping Cart"
               >
-                <ShoppingCart className="w-5 h-5 text-sky-400" />
+                <ShoppingCart className="w-5 h-5 text-red-900" />
                 {/* Cart Badge - Only show if there are items */}
                 {totalItems > 0 && (
                   <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center font-semibold animate-pulse">
@@ -405,10 +406,10 @@ const Navbar = () => {
             <div className="relative" ref={userRef}>
               <button
                 onClick={handleUserMenuOpen}
-                className={`${styles.textColor} group-hover:text-[var(--primary)] hover:bg-white/10 p-2 rounded-full transition-colors cursor-pointer`}
+                className={`${styles.textColor} hover:text-red-900 hover:bg-white/10 p-2 rounded-full transition-colors cursor-pointer`}
                 aria-label="User Account"
               >
-                <User className="w-5 h-5 text-sky-400" />
+                <User className="w-5 h-5 text-red-900" />
               </button>
 
               <UserMenu
@@ -430,7 +431,7 @@ const Navbar = () => {
                 setIsMobileMenuOpen(!isMobileMenuOpen);
                 setIsSearchOpen(false); // Close search when mobile menu opens
               }}
-              className={`relative w-11 h-11 ${styles.textColor} group-hover:text-sky-600 hover:opacity-50 transition-colors flex items-center justify-center cursor-pointer`}
+              className={`relative w-11 h-11 ${styles.textColor} group-hover:text-red-900 hover:opacity-50 transition-colors flex items-center justify-center cursor-pointer`}
               aria-expanded={isMobileMenuOpen}
               aria-label="Toggle mobile menu"
             >
@@ -533,8 +534,8 @@ const Navbar = () => {
               href="/products"
               onClick={() => setIsMobileMenuOpen(false)}
               className={`${
-                pathname === "/products" ? "text-sky-400" : "text-white/80"
-              } hover:text-[var(--primary)]  font-semibold transition-colors text-xl py-2 font-anek`}
+                pathname === "/products" ? "text-red-900" : "text-white/80"
+              } hover:text-red-900  font-semibold transition-colors text-xl py-2 font-anek`}
             >
               PRODUCTS
             </Link>
@@ -542,8 +543,8 @@ const Navbar = () => {
               href="/career"
               onClick={() => setIsMobileMenuOpen(false)}
               className={`${
-                pathname === "/career" ? "text-sky-400" : "text-white/80"
-              } hover:text-[var(--primary)]  font-semibold transition-colors text-xl py-2 font-anek`}
+                pathname === "/career" ? "text-red-900" : "text-white/80"
+              } hover:text-red-900  font-semibold transition-colors text-xl py-2 font-anek`}
             >
               CAREER
             </Link>
@@ -551,8 +552,8 @@ const Navbar = () => {
               href="/about"
               onClick={() => setIsMobileMenuOpen(false)}
               className={`${
-                pathname === "/about" ? "text-sky-400" : "text-white/80"
-              } hover:text-[var(--primary)]  font-semibold transition-colors text-xl py-2 font-anek`}
+                pathname === "/about" ? "text-red-900" : "text-white/80"
+              } hover:text-red-900  font-semibold transition-colors text-xl py-2 font-anek`}
             >
               ABOUT
             </Link>
@@ -560,8 +561,8 @@ const Navbar = () => {
               href="/contact"
               onClick={() => setIsMobileMenuOpen(false)}
               className={`${
-                pathname === "/contact" ? "text-sky-400" : "text-white/80"
-              } hover:text-[var(--primary)]  font-semibold transition-colors text-xl py-2 font-anek`}
+                pathname === "/contact" ? "text-red-900" : "text-white/80"
+              } hover:text-red-900  font-semibold transition-colors text-xl py-2 font-anek`}
             >
               CONTACT
             </Link>
@@ -648,7 +649,7 @@ const Navbar = () => {
           <div className="mt-4 flex items-center justify-around">
             <button
               onClick={handleCartOpen}
-              className="text-white/80 hover:text-[var(--primary)] p-3 rounded-full hover:bg-white/10 transition-colors cursor-pointer relative"
+              className="text-white/80 hover:text-red-900 p-3 rounded-full hover:bg-white/10 transition-colors cursor-pointer relative"
               aria-label="Shopping Cart"
             >
               <ShoppingCart className="w-6 h-6" />
@@ -661,7 +662,7 @@ const Navbar = () => {
             </button>
             <button
               onClick={handleUserMenuOpen}
-              className="text-white/80 hover:text-[var(--primary)] p-3 rounded-full hover:bg-white/10 transition-colors cursor-pointer"
+              className="text-white/80 hover:text-red-900 p-3 rounded-full hover:bg-white/10 transition-colors cursor-pointer"
               aria-label="User Account"
             >
               <User className="w-6 h-6" />

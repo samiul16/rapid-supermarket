@@ -218,7 +218,7 @@ const ExpandableSearchBar: React.FC<ExpandableSearchBarProps> = ({
 
   const Loading = () => (
     <div className="flex items-center justify-center">
-      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-sky-500"></div>
+      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-red-700"></div>
       <span className="ml-2">Searching...</span>
     </div>
   );
@@ -234,14 +234,16 @@ const ExpandableSearchBar: React.FC<ExpandableSearchBarProps> = ({
             className={`${iconColor} ${hoverIconColor} p-2 transition-all cursor-pointer hover:bg-white/10 rounded-full`}
             aria-label="Search"
           >
-            <Search className={`h-6 w-6 stroke-2 text-sky-400`} />
+            <Search
+              className={`h-6 w-6 stroke-2 text-red-900`}
+            />
           </button>
         )}
 
         <div
           className={`flex items-center bg-white transition-all duration-200 ${
             isExpanded
-              ? "w-80 px-3 py-1 rounded-full border-2 border-sky-400 transition-all hover:shadow-md shadow-lg"
+              ? "w-80 px-3 py-1 rounded-full border-2 border-red-700 transition-all hover:shadow-md shadow-lg"
               : "w-0 overflow-hidden"
           }`}
           onClick={(e) => e.stopPropagation()}
