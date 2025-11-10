@@ -33,101 +33,101 @@ const HotProductsSection = () => {
 
   const categories = [
     "All",
-    "Sweater",
-    "Head Gear",
-    "Gloves",
-    "Shawls & Wraps",
-    "Essentials",
+    "Arabian",
+    "Italian",
+    "Indian",
+    "Chinese",
+    "Bangladeshi",
   ];
 
   const products: Product[] = [
     {
       id: 1,
-      title: "Hoodie For Women",
-      subtitle:
-        "Supreme comfort meets lasting durability. Perfect for cold-weather layering, designed with ultra-soft fleece and a tailored fit.",
+      title: "Capsicum",
+      subtitle: "Fresh Capsicum. Finely chopped.",
       price: 290,
       rating: 5.0,
       reviews: 12,
-      image: "/products/garments-hot-product-1.jpg",
-      category: "Sweater",
+      image:
+        "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?w=400&q=80",
+      category: "Arabian",
     },
     {
       id: 2,
-      title: "Jacket For Men",
-      subtitle:
-        "Seamlessly transition from work to weekend. A classic, smart-casual design crafted with attention to fit and high-end finishing.",
+      title: "Orange",
+      subtitle: "Fresh Orange. Directly from farm.",
       price: 290,
       rating: 5.0,
       reviews: 12,
-      image: "/products/garments-hot-product-2.jpg",
-      category: "Sweater",
+      image:
+        "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&q=80",
+      category: "Italian",
     },
     {
       id: 3,
-      title: "Girls Woolen Hat",
-      subtitle:
-        "Snug warmth for winter adventures. Crafted from soft, breathable wool to keep her comfortable and protected in the cold.",
+      title: "Salmon Fish",
+      subtitle: "Fresh Salmon. High in omega-3.",
       price: 290,
       rating: 5.0,
       reviews: 12,
-      image: "/products/garments-hot-product-3.jpg",
-      category: "Head Gear",
+      image:
+        "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&q=80",
+      category: "Indian",
     },
     {
       id: 4,
-      title: "Winter Gloves",
-      subtitle:
-        "Supreme comfort meets lasting durability. Perfect for cold-weather layering, designed with ultra-soft fleece and a tailored fit.",
+      title: "Fresh Tomatoes",
+      subtitle: "Organic red tomatoes. Perfect for cooking.",
       price: 150,
       rating: 4.8,
       reviews: 8,
-      image: "/products/garments-hot-product-1.jpg",
-      category: "Gloves",
+      image:
+        "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&q=80",
+      category: "Chinese",
     },
     {
       id: 5,
-      title: "Kashmiri Shaal",
-      subtitle:
-        "Snug warmth for winter adventures. Crafted from soft, breathable wool to keep her comfortable and protected in the cold.",
+      title: "Basmati Rice",
+      subtitle: "Premium quality long grain rice from Bangladesh.",
       price: 450,
       rating: 5.0,
       reviews: 20,
-      image: "/products/garments-hot-product-2.jpg",
-      category: "Shaal",
-    },
-    {
-      id: 6,
-      title: "Traditional Sweater",
-      subtitle:
-        "Seamlessly transition from work to weekend. A classic, smart-casual design crafted with attention to fit and high-end finishing.",
-      price: 320,
-      rating: 4.9,
-      reviews: 15,
-      image: "/products/garments-hot-product-3.jpg",
+      image:
+        "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
       category: "Bangladeshi",
     },
     {
+      id: 6,
+      title: "Fresh Carrots",
+      subtitle: "Organic carrots. Rich in vitamins and minerals.",
+      price: 320,
+      rating: 4.9,
+      reviews: 15,
+      image:
+        "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=400&q=80",
+      category: "Arabian",
+    },
+    {
       id: 7,
-      title: "Cotton T-Shirt",
-      subtitle:
-        "Seamlessly transition from work to weekend. A classic, smart-casual design crafted with attention to fit and high-end finishing.",
+      title: "Pasta",
+      subtitle: "Authentic Italian pasta. Perfect for family meals.",
       price: 180,
       rating: 4.7,
       reviews: 10,
-      image: "/products/garments-hot-product-1.jpg",
-      category: "Sweater",
+      image:
+        "https://images.unsplash.com/photo-1551892374-ecf8754cf8b0?w=400&q=80",
+      category: "Italian",
     },
     {
       id: 8,
-      title: "Woolen Scarf",
-      subtitle:
-        "Supreme comfort meets lasting durability. Perfect for cold-weather layering, designed with ultra-soft fleece and a tailored fit.",
+      title: "Spices Mix",
+      subtitle: "Traditional Indian spice blend. Authentic flavors.",
       price: 220,
       rating: 4.9,
       reviews: 18,
-      image: "/products/garments-hot-product-2.jpg",
-      category: "Shaal",
+      image:
+        "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&q=80",
+      category: "Indian",
     },
   ];
 
@@ -243,7 +243,7 @@ const HotProductsSection = () => {
 
   return (
     <div className="w-full bg-white py-12 md:py-16 lg:py-20">
-      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-16">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-28">
         {/* Header Section */}
         <motion.div
           className="flex flex-col items-center gap-8 md:gap-10 mb-12"
