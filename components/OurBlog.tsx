@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 const OurBlog = () => {
+  const router = useRouter();
   const blogPosts = [
     {
       id: 1,
@@ -69,6 +71,10 @@ const OurBlog = () => {
   const getCurrentPosts = () => {
     const startIndex = currentIndex * postsPerPage;
     return blogPosts.slice(startIndex, startIndex + postsPerPage);
+  };
+
+  const handleReadMore = () => {
+    router.push("/blogs");
   };
 
   return (
@@ -177,7 +183,8 @@ const OurBlog = () => {
                 </motion.p>
 
                 <motion.button
-                  className="text-red-600 text-sm font-medium border border-red-600 px-4 py-2 rounded-full hover:bg-red-600 hover:text-white transition-colors"
+                  onClick={handleReadMore}
+                  className="text-red-600 text-sm font-medium border border-red-600 px-4 py-2 rounded-full hover:bg-red-600 hover:text-white transition-colors cursor-pointer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0 }}

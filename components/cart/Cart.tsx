@@ -285,7 +285,10 @@ export default function Cart({
                   Clear shopping Cart
                 </button>
                 <button
-                  onClick={onContinueShopping}
+                  onClick={() => {
+                    onContinueShopping?.();
+                    router.push("/products");
+                  }}
                   className="px-6 sm:px-8 py-3 bg-red-700 text-white rounded-full hover:bg-red-800 transition-colors text-sm font-semibold cursor-pointer shadow"
                 >
                   Continue shopping
