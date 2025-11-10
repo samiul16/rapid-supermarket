@@ -83,43 +83,42 @@ export default function Page() {
       title: "Buy gift card vouchers for companies",
       description:
         "Purchase flexible vouchers that businesses can use for their uniform needs",
-      color: "blue",
+      color: "red",
     },
     {
       icon: Gift,
       title: "Gift an embroidery service to another business",
       description:
         "Share the gift of professional embroidery services with partner companies",
-      color: "purple",
+      color: "red",
     },
     {
       icon: Calendar,
       title: "Preload amount for monthly uniform orders",
       description:
         "Set up convenient prepaid accounts for recurring uniform requirements",
-      color: "green",
+      color: "red",
     },
   ];
 
   const useCases = [
-    { icon: Building, text: "Corporate gifting", color: "blue" },
-    { icon: Sparkles, text: "Business birthdays", color: "pink" },
-    { icon: Calendar, text: "Events", color: "purple" },
-    { icon: Users, text: "Team uniform support", color: "green" },
+    { icon: Building, text: "Corporate gifting", color: "red" },
+    { icon: Sparkles, text: "Business birthdays", color: "red" },
+    { icon: Calendar, text: "Events", color: "red" },
+    { icon: Users, text: "Team uniform support", color: "red" },
   ];
 
   return (
     <div className="bg-white min-h-screen">
       <div data-aos="fade-up">
         <CommonHeader
-          breadcrumbs={[
-            { label: "Home", href: "/" },
-            { label: "Gift Cards", isActive: true },
-          ]}
+          heroImage="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&q=80"
+          heroTitle="Gift Card"
+          heroDescription="Please read these terms and conditions carefully before using our services."
         />
       </div>
 
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-24 py-12">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-28 py-12">
         {/* Hero Section */}
         <motion.div
           initial="hidden"
@@ -129,7 +128,7 @@ export default function Page() {
         >
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-sky-500 to-sky-600 rounded-full mb-8"
+            className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-red-600 to-red-700 rounded-full mb-8"
           >
             <Gift className="w-10 h-10 text-white" />
           </motion.div>
@@ -139,7 +138,7 @@ export default function Page() {
             className="text-5xl md:text-6xl font-bold text-gray-800 mb-6"
           >
             Gift Cards
-            <span className="block text-3xl md:text-4xl text-sky-500 mt-2">
+            <span className="block text-3xl md:text-4xl text-red-600 mt-2">
               Coming Soon!
             </span>
           </motion.h1>
@@ -162,7 +161,7 @@ export default function Page() {
         >
           <motion.div
             variants={cardVariants}
-            className="bg-gradient-to-r from-sky-400 to-sky-600 text-white px-8 py-4 rounded-full shadow-lg"
+            className="bg-gradient-to-r from-red-500 to-red-700 text-white px-8 py-4 rounded-full shadow-lg"
           >
             <div className="flex items-center space-x-3">
               <Clock className="w-6 h-6" />

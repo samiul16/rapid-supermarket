@@ -251,14 +251,14 @@ const Navbar = () => {
                 PRODUCTS
               </Link>
               <Link
-                href="/career"
+                href="/blogs"
                 className={`${
-                  pathname === "/career" ? styles.activeColor : styles.textColor
+                  pathname === "/blogs" ? styles.activeColor : styles.textColor
                 } ${
                   styles.hoverColor
                 } group-hover:text-red-900 font-semibold transition-colors text-lg font-anek uppercase`}
               >
-                CAREER
+                BLOGS
               </Link>
               <Link
                 href="/about"
@@ -540,13 +540,13 @@ const Navbar = () => {
               PRODUCTS
             </Link>
             <Link
-              href="/career"
+              href="/blogs"
               onClick={() => setIsMobileMenuOpen(false)}
               className={`${
-                pathname === "/career" ? "text-red-900" : "text-white/80"
+                pathname === "/blogs" ? "text-red-900" : "text-white/80"
               } hover:text-red-900  font-semibold transition-colors text-xl py-2 font-anek`}
             >
-              CAREER
+              BLOGS
             </Link>
             <Link
               href="/about"
