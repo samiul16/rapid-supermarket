@@ -12,7 +12,6 @@ import {
   X,
 } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 interface UserMenuProps {
   isOpen: boolean;
@@ -20,7 +19,7 @@ interface UserMenuProps {
   isLoggedIn?: boolean;
   userName?: string;
   userEmail?: string;
-  onLogin?: () => void;
+  onOpenAuthModal?: (mode: "login" | "signup") => void;
   onLogout?: () => void;
   className?: string;
 }
@@ -31,11 +30,10 @@ const UserMenu: React.FC<UserMenuProps> = ({
   isLoggedIn = false,
   userName = "John Doe",
   userEmail = "john@example.com",
-  onLogin,
+  onOpenAuthModal,
   onLogout,
   className = "",
 }) => {
-  const router = useRouter();
   const userMenuRef = useRef<HTMLDivElement>(null);
 
   // Handle escape key and outside click
@@ -79,7 +77,12 @@ const UserMenu: React.FC<UserMenuProps> = ({
   }, [isOpen, onClose]);
 
   const handleLogin = () => {
-    router.push("/login");
+    onOpenAuthModal?.("login");
+    onClose();
+  };
+
+  const handleSignup = () => {
+    onOpenAuthModal?.("signup");
     onClose();
   };
 
@@ -203,13 +206,13 @@ const UserMenu: React.FC<UserMenuProps> = ({
                   <span className="font-semibold">Sign In</span>
                 </button>
 
-                <Link
-                  href="/register"
+                <button
+                  onClick={handleSignup}
                   className="w-full flex items-center justify-center gap-3 px-4 py-3 border-2 border-gray-200 text-gray-700 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-colors"
                 >
                   <UserPlus className="w-5 h-5" />
                   <span className="font-semibold">Create Account</span>
-                </Link>
+                </button>
               </div>
             </div>
 
