@@ -20,9 +20,9 @@ const Footer = () => {
                 className="mb-4"
               />
             </div>
-            <p className="text-sm text-gray-300 mb-6">
-              Excellency Catering Restaurant Serves Sweets perfectly,
-              complementing tender cuts of meat to.
+            <p className="text-xl text-white mb-6">
+              Rapid Supermarket Serves Sweets perfectly, complementing tender
+              cuts of meat to.
             </p>
 
             {/* Social Media Icons */}
@@ -95,12 +95,12 @@ const Footer = () => {
 
           {/* Company Info Section */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">COMPANY INFO</h3>
+            <h3 className="text-xl font-semibold mb-4">COMPANY INFO</h3>
             <ul className="space-y-2">
               <li>
                 <Link
                   href="/about"
-                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                  className="text-xl text-white hover:text-white transition-colors"
                 >
                   Profile
                 </Link>
@@ -108,7 +108,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="/blog"
-                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                  className="text-xl text-white hover:text-white transition-colors"
                 >
                   Blog
                 </Link>
@@ -116,7 +116,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="/career"
-                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                  className="text-xl text-white hover:text-white transition-colors"
                 >
                   Careers
                 </Link>
@@ -124,7 +124,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="/testimonial"
-                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                  className="text-xl text-white hover:text-white transition-colors"
                 >
                   Testimonial
                 </Link>
@@ -134,7 +134,7 @@ const Footer = () => {
                   href="https://www.google.com/maps/search/?api=1&query=Al+Rashidiya+1+Ajman+United+Arab+Emirates"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                  className="text-xl text-white hover:text-white transition-colors"
                 >
                   Location
                 </Link>
@@ -144,12 +144,12 @@ const Footer = () => {
 
           {/* Customer Care Section */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">CUSTOMER CARE</h3>
+            <h3 className="text-xl font-semibold mb-4">CUSTOMER CARE</h3>
             <ul className="space-y-2">
               <li>
                 <Link
                   href="/faq"
-                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                  className="text-xl text-white hover:text-white transition-colors"
                 >
                   FAQ&apos;s
                 </Link>
@@ -157,7 +157,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="/terms-policy"
-                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                  className="text-xl text-white hover:text-white transition-colors"
                 >
                   Terms of Services
                 </Link>
@@ -165,7 +165,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="/privacy-policy"
-                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                  className="text-xl text-white hover:text-white transition-colors"
                 >
                   Privacy Policy
                 </Link>
@@ -173,7 +173,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="/contact"
-                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                  className="text-xl text-white hover:text-white transition-colors"
                 >
                   Contact Us
                 </Link>
@@ -181,7 +181,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="/gift-card"
-                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                  className="text-xl text-white hover:text-white transition-colors"
                 >
                   Gift Card
                 </Link>
@@ -191,12 +191,12 @@ const Footer = () => {
 
           {/* Help & Support Section */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">HELP & SUPPORT</h3>
+            <h3 className="text-xl font-semibold mb-4">HELP & SUPPORT</h3>
             <ul className="space-y-4">
               <li>
                 <Link
                   href="/help-support"
-                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                  className="text-xl text-white hover:text-white transition-colors"
                 >
                   Delivery Info
                 </Link>
@@ -204,7 +204,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="/help-support"
-                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                  className="text-xl text-white hover:text-white transition-colors"
                 >
                   Refund Policy
                 </Link>
@@ -212,7 +212,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="/help-support"
-                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                  className="text-xl text-white hover:text-white transition-colors"
                 >
                   How to order
                 </Link>
@@ -220,7 +220,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="/help-support"
-                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                  className="text-xl text-white hover:text-white transition-colors"
                 >
                   How to track Us
                 </Link>
@@ -230,7 +230,7 @@ const Footer = () => {
 
           {/* Contact Section */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">CONTACT</h3>
+            <h3 className="text-xl font-semibold mb-4">CONTACT</h3>
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <svg
@@ -243,7 +243,7 @@ const Footer = () => {
                   <path d="M8 12a1 1 0 100-2 1 1 0 000 2zm4 0a1 1 0 100-2 1 1 0 000 2zm4 0a1 1 0 100-2 1 1 0 000 2z" />
                   <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.546 20.2A1 1 0 003.8 21.454l3.032-.892A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" />
                 </svg>
-                <p className="text-sm text-gray-300">058 201 5468</p>
+                <p className="text-xl text-white">058 201 5468</p>
               </div>
 
               <div className="flex items-center space-x-3">
@@ -257,7 +257,7 @@ const Footer = () => {
                   <rect x="3" y="5" width="18" height="14" rx="2" />
                   <path d="M3 7l9 6 9-6" />
                 </svg>
-                <p className="text-sm text-gray-300">
+                <p className="text-xl text-white">
                   info@mizanursupermarket.com
                 </p>
               </div>
@@ -273,7 +273,7 @@ const Footer = () => {
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
                   <circle cx="12" cy="9" r="2.5" />
                 </svg>
-                <p className="text-sm text-gray-300">
+                <p className="text-xl text-white">
                   Al Rashidiya 1 - Ajman - United Arab Emirates
                 </p>
               </div>
@@ -302,14 +302,14 @@ const Footer = () => {
             </button>
 
             <div className="flex items-center space-x-4 mb-4 md:mb-0">
-              <p className="text-sm text-gray-300">
+              <p className="text-xl text-white">
                 Developed by{" "}
                 <span className="text-white font-semibold">Rapid</span>
               </p>
             </div>
 
             <div className="flex items-center space-x-4 mb-4 md:mb-0">
-              <p className="text-sm text-gray-300">
+              <p className="text-xl text-white">
                 Copyright © MizanurSuperMarket. All Rights Reserved
               </p>
             </div>
