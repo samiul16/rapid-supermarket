@@ -19,10 +19,9 @@ export default function Page() {
     <div>
       <div data-aos="fade-up">
         <CommonHeader
-          breadcrumbs={[
-            { label: "Home", href: "/" },
-            { label: "FAQ", isActive: true },
-          ]}
+          heroImage="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&q=80"
+          heroTitle="FAQ"
+          heroDescription="Discover the finest menus in town with Excellency."
         />
       </div>
       <div data-aos="fade-up">

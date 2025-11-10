@@ -5,82 +5,200 @@ import { useState } from "react";
 import { Heart, ShoppingCart, Star } from "lucide-react";
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
-import { useAppDispatch } from "@/redux/hooks/hooks";
 import { Product as CartProduct } from "@/redux/hooks/cart/cartSlice";
 import { useAddToCart } from "@/hooks/useAddToCart";
 
 const PopularProducts = () => {
   const [favorites, setFavorites] = useState(new Set());
   const [selectedCategory, setSelectedCategory] = useState("Fish");
-  const dispatch = useAppDispatch();
 
   const categories = ["Fish", "Vegetables", "Beef", "Milk"];
 
   // Sample product data
   const products = [
+    // Fish Products
     {
       id: 1,
-      name: "Red Capsicum",
-      category: "Vegetables",
-      price: 20.0,
-      rating: 4.5,
-      image: "/top-selling/1.webp",
-    },
-    {
-      id: 2,
       name: "Fresh Salmon",
       category: "Fish",
       price: 45.0,
       rating: 4.8,
-      image: "/top-selling/2.jpg",
+      image:
+        "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&q=80",
     },
     {
-      id: 3,
-      name: "Organic Tomato",
-      category: "Vegetables",
-      price: 12.0,
-      rating: 4.5,
-      image: "/top-selling/3.jpg",
-    },
-    {
-      id: 4,
-      name: "Premium Beef",
-      category: "Beef",
-      price: 38.0,
-      rating: 4.9,
-      image: "/top-selling/4.jpg",
-    },
-    {
-      id: 5,
-      name: "Fresh Milk",
-      category: "Milk",
-      price: 8.0,
-      rating: 4.7,
-      image: "/top-selling/5.jpg",
-    },
-    {
-      id: 6,
-      name: "Green Capsicum",
-      category: "Vegetables",
-      price: 18.0,
-      rating: 4.5,
-      image: "/top-selling/1.webp",
-    },
-    {
-      id: 7,
+      id: 2,
       name: "Fresh Tuna",
       category: "Fish",
       price: 42.0,
       rating: 4.6,
-      image: "/top-selling/2.jpg",
+      image:
+        "https://images.unsplash.com/photo-1697030891256-36a3770cddde?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2730",
+    },
+    {
+      id: 3,
+      name: "Sea Bass",
+      category: "Fish",
+      price: 38.0,
+      rating: 4.7,
+      image:
+        "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&q=80",
+    },
+    {
+      id: 4,
+      name: "Fresh Mackerel",
+      category: "Fish",
+      price: 32.0,
+      rating: 4.5,
+      image:
+        "https://images.unsplash.com/photo-1554071407-1fb7259a9118?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070",
+    },
+    {
+      id: 5,
+      name: "Red Snapper",
+      category: "Fish",
+      price: 48.0,
+      rating: 4.9,
+      image:
+        "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&q=80",
+    },
+    {
+      id: 6,
+      name: "Fresh Cod",
+      category: "Fish",
+      price: 35.0,
+      rating: 4.6,
+      image:
+        "https://images.unsplash.com/photo-1756688691284-4f0184d399c8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1035",
+    },
+    {
+      id: 7,
+      name: "Prawns",
+      category: "Fish",
+      price: 55.0,
+      rating: 4.8,
+      image:
+        "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=400&q=80",
     },
     {
       id: 8,
-      name: "Organic Carrot",
+      name: "Fresh Sardines",
+      category: "Fish",
+      price: 25.0,
+      rating: 4.4,
+      image:
+        "https://images.unsplash.com/photo-1567087978459-8a8eeac7bc75?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2106",
+    },
+    // Vegetables
+    {
+      id: 9,
+      name: "Red Capsicum",
+      category: "Vegetables",
+      price: 20.0,
+      rating: 4.5,
+      image:
+        "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?w=400&q=80",
+    },
+    {
+      id: 10,
+      name: "Organic Tomatoes",
+      category: "Vegetables",
+      price: 18.0,
+      rating: 4.5,
+      image:
+        "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&q=80",
+    },
+    {
+      id: 11,
+      name: "Fresh Carrots",
       category: "Vegetables",
       price: 15.0,
+      rating: 4.3,
+      image:
+        "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=400&q=80",
+    },
+    {
+      id: 12,
+      name: "Green Capsicum",
+      category: "Vegetables",
+      price: 18.0,
+      rating: 4.4,
+      image:
+        "https://images.unsplash.com/photo-1585159079680-8dec029b76ed?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1035",
+    },
+    // Beef
+    {
+      id: 13,
+      name: "Premium Beef Steak",
+      category: "Beef",
+      price: 65.0,
+      rating: 4.9,
+      image:
+        "https://images.unsplash.com/photo-1677027201352-3c3981cb8b5c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1480",
+    },
+    {
+      id: 14,
+      name: "Ground Beef",
+      category: "Beef",
+      price: 38.0,
+      rating: 4.7,
+      image:
+        "https://images.unsplash.com/photo-1448907503123-67254d59ca4f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z3JvdW5kJTIwYmVlZnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900",
+    },
+    {
+      id: 15,
+      name: "Beef Ribs",
+      category: "Beef",
+      price: 55.0,
+      rating: 4.8,
+      image:
+        "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=400&q=80",
+    },
+    {
+      id: 16,
+      name: "Beef Tenderloin",
+      category: "Beef",
+      price: 85.0,
+      rating: 5.0,
+      image:
+        "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&q=80",
+    },
+    // Milk Products
+    {
+      id: 17,
+      name: "Fresh Milk",
+      category: "Milk",
+      price: 8.0,
+      rating: 4.7,
+      image:
+        "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&q=80",
+    },
+    {
+      id: 18,
+      name: "Organic Cheese",
+      category: "Milk",
+      price: 25.0,
+      rating: 4.8,
+      image:
+        "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=400&q=80",
+    },
+    {
+      id: 19,
+      name: "Greek Yogurt",
+      category: "Milk",
+      price: 12.0,
+      rating: 4.6,
+      image:
+        "https://images.unsplash.com/photo-1571212515416-fef01fc43637?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z3JlZWslMjB5b2d1cnR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900",
+    },
+    {
+      id: 20,
+      name: "Fresh Butter",
+      category: "Milk",
+      price: 15.0,
       rating: 4.5,
-      image: "/top-selling/3.jpg",
+      image:
+        "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=400&q=80",
     },
   ];
 
@@ -116,22 +234,17 @@ const PopularProducts = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
+        duration: 0.3,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
-      scale: 1,
       transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 12,
+        duration: 0.3,
       },
     },
   };
@@ -143,21 +256,17 @@ const PopularProducts = () => {
 
     const handleAddToCart = (product: any) => {
       const cartProduct: CartProduct = {
-        id: parseInt(product.id),
+        id: product.id,
         name: product.name,
         price: product.price,
         image_url: product.image,
         currency: "AED",
       };
-      addToCartGlobal(cartProduct, parseInt(product.id), quantity, setQuantity);
+      addToCartGlobal(cartProduct, product.id, quantity, setQuantity);
     };
 
     return (
-      <motion.div
-        variants={itemVariants}
-        className="w-full inline-flex flex-col justify-start items-start gap-2.5"
-        whileHover={{ y: -8, transition: { duration: 0.3 } }}
-      >
+      <div className="w-full inline-flex flex-col justify-start items-start gap-2.5 hover:-translate-y-2 transition-transform duration-300">
         {/* Image Container */}
         <div className="w-full aspect-square px-3.5 pt-3 pb-6 rounded-[20px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] flex flex-col justify-start items-end gap-2.5 relative overflow-hidden group bg-white">
           {/* Product Image */}
@@ -180,14 +289,9 @@ const PopularProducts = () => {
           {/* Action Buttons */}
           <div className="flex flex-col justify-start items-start gap-2.5 relative z-10">
             {/* Favorite Button */}
-            <motion.button
+            <button
               onClick={() => toggleFavorite(product.id)}
-              className="w-11 p-2.5 bg-rose-100 rounded-full flex justify-center items-center cursor-pointer hover:bg-rose-200 transition-colors shadow-sm"
-              whileHover={{ scale: 1.15, rotate: isFavorite ? 0 : 10 }}
-              whileTap={{ scale: 0.9 }}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.1 }}
+              className="w-11 p-2.5 bg-rose-100 rounded-full flex justify-center items-center cursor-pointer hover:bg-rose-200 hover:scale-110 transition-all duration-200 shadow-sm"
             >
               <Heart
                 className={`w-5 h-5 transition-all duration-300 ${
@@ -196,20 +300,15 @@ const PopularProducts = () => {
                     : "text-[#A40B00]"
                 }`}
               />
-            </motion.button>
+            </button>
 
             {/* Add to Cart Button */}
-            <motion.button
+            <button
               onClick={() => handleAddToCart(product)}
-              className="p-2.5 bg-rose-100 rounded-full shadow-[0px_0px_2px_0px_rgba(0,0,0,0.25)] flex justify-center items-center cursor-pointer hover:bg-rose-200 transition-colors"
-              whileHover={{ scale: 1.15 }}
-              whileTap={{ scale: 0.9 }}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.1 + 0.1 }}
+              className="p-2.5 bg-rose-100 rounded-full shadow-[0px_0px_2px_0px_rgba(0,0,0,0.25)] flex justify-center items-center cursor-pointer hover:bg-rose-200 hover:scale-110 transition-all duration-200"
             >
               <ShoppingCart className="w-5 h-5 text-[#A40B00]" />
-            </motion.button>
+            </button>
           </div>
 
           {/* Floating Badge Animation */}
@@ -224,12 +323,7 @@ const PopularProducts = () => {
         </div>
 
         {/* Product Info */}
-        <motion.div
-          className="self-stretch flex flex-col justify-start items-start gap-2.5"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: index * 0.1 + 0.2 }}
-        >
+        <div className="self-stretch flex flex-col justify-start items-start gap-2.5">
           {/* Category and Rating */}
           <div className="self-stretch inline-flex justify-start items-center gap-4 sm:gap-14">
             <div className="text-neutral-800 text-sm sm:text-base font-normal">
@@ -238,20 +332,14 @@ const PopularProducts = () => {
             <div className="flex justify-start items-center gap-2">
               <div className="flex items-center gap-0.5">
                 {[...Array(5)].map((_, i) => (
-                  <motion.div
+                  <Star
                     key={i}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: index * 0.1 + 0.3 + i * 0.05 }}
-                  >
-                    <Star
-                      className={`w-3 h-3 sm:w-4 sm:h-4 ${
-                        i < Math.floor(product.rating)
-                          ? "fill-yellow-400 text-yellow-400"
-                          : "text-gray-300"
-                      }`}
-                    />
-                  </motion.div>
+                    className={`w-3 h-3 sm:w-4 sm:h-4 ${
+                      i < Math.floor(product.rating)
+                        ? "fill-yellow-400 text-yellow-400"
+                        : "text-gray-300"
+                    }`}
+                  />
                 ))}
               </div>
               <span className="text-neutral-800 text-sm sm:text-base font-normal">
@@ -266,22 +354,19 @@ const PopularProducts = () => {
               {product.name}
             </h3>
             <div className="self-stretch inline-flex justify-start items-end gap-20">
-              <motion.span
-                className="text-[#A40B00] text-xl sm:text-2xl font-black"
-                whileHover={{ scale: 1.05 }}
-              >
+              <span className="text-[#A40B00] text-xl sm:text-2xl font-black">
                 ${product.price.toFixed(2)}
-              </motion.span>
+              </span>
             </div>
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     );
   };
 
   return (
     <div className="w-full bg-white">
-      <div className="w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-28 py-12">
+      <div className="w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-28 py-20">
         <div className="space-y-10">
           {/* Header with Category Filters */}
           <motion.div
@@ -334,39 +419,31 @@ const PopularProducts = () => {
           </motion.div>
 
           {/* Products Grid - 2 Rows */}
-          <motion.div
-            className="space-y-7"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={containerVariants}
-          >
+          <div className="space-y-7">
             {/* First Row */}
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-              variants={containerVariants}
-            >
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {filteredProducts.slice(0, 4).map((product, index) => (
-                <ProductCard key={product.id} product={product} index={index} />
+                <ProductCard
+                  key={`${selectedCategory}-${product.id}`}
+                  product={product}
+                  index={index}
+                />
               ))}
-            </motion.div>
+            </div>
 
             {/* Second Row */}
             {filteredProducts.length > 4 && (
-              <motion.div
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-                variants={containerVariants}
-              >
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {filteredProducts.slice(4, 8).map((product, index) => (
                   <ProductCard
-                    key={product.id}
+                    key={`${selectedCategory}-${product.id}-row2`}
                     product={product}
                     index={index + 4}
                   />
                 ))}
-              </motion.div>
+              </div>
             )}
-          </motion.div>
+          </div>
 
           {/* Empty State */}
           {filteredProducts.length === 0 && (

@@ -5,7 +5,6 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Cart from "@/components/cart/Cart";
 import CommonHeader from "@/components/Common/CommonHeader";
-import RecentView from "@/components/cart/RecentView";
 
 interface CartItem {
   id: string;
@@ -64,10 +63,9 @@ export default function Page() {
   return (
     <div>
       <CommonHeader
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Cart", isActive: true },
-        ]}
+        heroImage="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&q=80"
+        heroTitle="Cart"
+        heroDescription="Discover the finest menus in town with Excellency."
       />
       <div data-aos="fade-up">
         <Cart
@@ -79,9 +77,6 @@ export default function Page() {
           onProceedToCheckout={handleProceedToCheckout}
           onApplyCoupon={handleApplyCoupon}
         />
-      </div>
-      <div data-aos="fade-up">
-        <RecentView />
       </div>
     </div>
   );

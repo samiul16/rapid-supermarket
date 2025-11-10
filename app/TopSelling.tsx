@@ -28,35 +28,39 @@ const TopSellingCarousel = () => {
   const products = [
     {
       id: 1,
+      name: "Fresh Orange",
+      category: "Vegetables",
+      price: 20.0,
+      rating: 4.5,
+      image:
+        "https://images.unsplash.com/photo-1580052614034-c55d20bfee3b?w=400&q=80",
+    },
+    {
+      id: 2,
+      name: "Premium Beef Steak",
+      category: "Beef",
+      price: 45.0,
+      rating: 4.8,
+      image:
+        "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=400&q=80",
+    },
+    {
+      id: 3,
+      name: "Fresh Salmon Fish",
+      category: "Fish",
+      price: 35.0,
+      rating: 4.5,
+      image:
+        "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&q=80",
+    },
+    {
+      id: 4,
       name: "Red Capsicum",
       category: "Vegetables",
       price: 20.0,
       rating: 4.5,
-      image: "/top-selling/1.webp",
-    },
-    {
-      id: 2,
-      name: "Fresh Salmon",
-      category: "Fish",
-      price: 45.0,
-      rating: 4.8,
-      image: "/top-selling/2.jpg",
-    },
-    {
-      id: 3,
-      name: "Organic Tomato",
-      category: "Vegetables",
-      price: 12.0,
-      rating: 4.5,
-      image: "/top-selling/3.jpg",
-    },
-    {
-      id: 4,
-      name: "Premium Beef",
-      category: "Beef",
-      price: 38.0,
-      rating: 4.9,
-      image: "/top-selling/4.jpg",
+      image:
+        "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?w=400&q=80",
     },
     {
       id: 5,
@@ -64,15 +68,17 @@ const TopSellingCarousel = () => {
       category: "Milk",
       price: 8.0,
       rating: 4.7,
-      image: "/top-selling/5.jpg",
+      image:
+        "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
     },
     {
       id: 6,
-      name: "Green Capsicum",
+      name: "Organic Tomatoes",
       category: "Vegetables",
       price: 18.0,
       rating: 4.5,
-      image: "/top-selling/1.webp",
+      image:
+        "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&q=80",
     },
     {
       id: 7,
@@ -80,15 +86,17 @@ const TopSellingCarousel = () => {
       category: "Fish",
       price: 42.0,
       rating: 4.6,
-      image: "/top-selling/2.jpg",
+      image:
+        "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=400&q=80",
     },
     {
       id: 8,
-      name: "Organic Carrot",
-      category: "Vegetables",
-      price: 15.0,
-      rating: 4.5,
-      image: "/top-selling/3.jpg",
+      name: "Organic Cheese",
+      category: "Milk",
+      price: 25.0,
+      rating: 4.8,
+      image:
+        "https://images.unsplash.com/photo-1552767059-ce182ead6c1b?w=400&q=80",
     },
   ];
 
@@ -276,7 +284,7 @@ const TopSellingCarousel = () => {
 
   return (
     <div className="w-full bg-white">
-      <div className="w-full max-w-8px mx-auto px-4 sm:px-6 lg:px-28 py-12">
+      <div className="w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-28 py-12">
         <div className="space-y-10">
           {/* Header with Category Filters */}
           <motion.div

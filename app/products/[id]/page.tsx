@@ -1,4 +1,5 @@
 "use client";
+import CommonHeader from "@/components/Common/CommonHeader";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -101,7 +102,13 @@ const ProductPage = () => {
 
   return (
     <div className="w-full min-h-screen bg-white overflow-hidden">
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-28">
+      <CommonHeader
+        heroImage="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&q=80"
+        heroTitle="Product"
+        heroDescription="Discover the finest menus in town with Excellency."
+      />
+
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-28 py-10">
         {/* Main Product Section */}
         <motion.div
           className="pt-16 sm:pt-24 md:pt-32 lg:pt-36 xl:pt-[141px] pb-12 md:pb-20"

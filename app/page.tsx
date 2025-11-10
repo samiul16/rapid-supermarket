@@ -46,9 +46,7 @@ export default function Home() {
           <div data-aos="fade-up" data-aos-delay="100">
             <Wishes />
           </div>
-          <div data-aos="fade-up" data-aos-delay="200">
-            <BannerSection />
-          </div>
+
           <div data-aos="fade-up" data-aos-delay="200">
             <OurProducts />
           </div>

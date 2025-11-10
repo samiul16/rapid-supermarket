@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Tag, CreditCard, Truck, CheckCircle2 } from "lucide-react";
 import CommonHeader from "@/components/Common/CommonHeader";
+import DownloadOurApp from "@/components/DownloadOurApp";
 
 interface FormData {
   name: string;
@@ -43,6 +44,7 @@ const CheckoutPage = () => {
   const [selectedPayment, setSelectedPayment] = useState<string>("cod");
   const [couponCode, setCouponCode] = useState("");
   const [couponApplied, setCouponApplied] = useState(false);
+  const [focusedField, setFocusedField] = useState<string | null>(null);
 
   const shippingOptions: ShippingOption[] = [
     {
@@ -107,394 +109,342 @@ const CheckoutPage = () => {
   };
 
   return (
-    <div className="w-full bg-white min-h-screen py-8 md:py-12 ">
+    <div className="w-full bg-white min-h-screen">
       <CommonHeader
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Checkout", isActive: true },
-        ]}
+        heroImage="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&q=80"
+        heroTitle="Checkout"
+        heroDescription="Discover the finest menus in town with Excellency."
       />
-      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-20 pt-10">
-        <div className="flex flex-col lg:flex-row gap-8 justify-between">
-          {/* Left Section - Personal Information & Shipping */}
-          <div className="flex-1 max-w-[1080px]">
-            <motion.div
-              className="space-y-10"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              {/* Personal Information */}
-              <div className="space-y-8">
-                <h2 className="text-xl font-bold text-neutral-900">
-                  Personal Information
-                </h2>
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-28 py-20">
+        <div className="bg-white rounded-3xl p-8 md:p-12 shadow border border-gray-200">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Left Section - Billing Information */}
+            <div className="space-y-6">
+              <h2 className="text-3xl font-bold text-gray-900">
+                Billing Information
+              </h2>
 
-                <div className="bg-sky-100 rounded-2xl shadow-[2px_4px_10px_0px_rgba(0,0,0,0.10)] p-6 space-y-6">
-                  {/* Name */}
-                  <div className="space-y-3">
-                    <label className="text-lg font-medium text-zinc-600">
-                      Name
-                    </label>
+              <div className="space-y-4">
+                {/* First Name & Last Name */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="relative">
                     <input
                       type="text"
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="w-full h-14 px-3 bg-white rounded-[10px] border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all"
-                      placeholder="Enter your name"
+                      onFocus={() => setFocusedField("name")}
+                      onBlur={() => setFocusedField(null)}
+                      placeholder=" "
+                      className="w-full h-12 px-4 bg-white rounded-full border-2 border-gray-300 focus:outline-none focus:border-red-700 transition-all peer placeholder-transparent"
                     />
-                  </div>
-
-                  {/* Email */}
-                  <div className="space-y-3">
-                    <label className="text-lg font-medium text-zinc-600">
-                      Email
+                    <label
+                      className={`absolute left-4 bg-white px-2 transition-all duration-200 pointer-events-none ${
+                        formData.name || focusedField === "name"
+                          ? "-top-2.5 text-xs text-red-700"
+                          : "top-3 text-base text-gray-500"
+                      }`}
+                    >
+                      First Name
                     </label>
+                  </div>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      name="lastName"
+                      onFocus={() => setFocusedField("lastName")}
+                      onBlur={() => setFocusedField(null)}
+                      placeholder=" "
+                      className="w-full h-12 px-4 bg-white rounded-full border-2 border-gray-300 focus:outline-none focus:border-red-700 transition-all peer placeholder-transparent"
+                    />
+                    <label
+                      className={`absolute left-4 bg-white px-2 transition-all duration-200 pointer-events-none ${
+                        focusedField === "lastName"
+                          ? "-top-2.5 text-xs text-red-700"
+                          : "top-3 text-base text-gray-500"
+                      }`}
+                    >
+                      Last Name
+                    </label>
+                  </div>
+                </div>
+
+                {/* Email & Phone */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="relative">
                     <input
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full h-14 px-3 bg-white rounded-[10px] border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all"
-                      placeholder="Enter your email"
+                      onFocus={() => setFocusedField("email")}
+                      onBlur={() => setFocusedField(null)}
+                      placeholder=" "
+                      className="w-full h-12 px-4 bg-white rounded-full border-2 border-gray-300 focus:outline-none focus:border-red-700 transition-all peer placeholder-transparent"
                     />
-                  </div>
-
-                  {/* Mobile Number */}
-                  <div className="space-y-3">
-                    <label className="text-lg font-medium text-zinc-600">
-                      Mobile Number
+                    <label
+                      className={`absolute left-4 bg-white px-2 transition-all duration-200 pointer-events-none ${
+                        formData.email || focusedField === "email"
+                          ? "-top-2.5 text-xs text-red-700"
+                          : "top-3 text-base text-gray-500"
+                      }`}
+                    >
+                      Email
                     </label>
+                  </div>
+                  <div className="relative">
                     <input
                       type="tel"
                       name="mobile"
                       value={formData.mobile}
                       onChange={handleInputChange}
-                      className="w-full h-14 px-3 bg-white rounded-[10px] border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all"
-                      placeholder="Enter your mobile number"
+                      onFocus={() => setFocusedField("mobile")}
+                      onBlur={() => setFocusedField(null)}
+                      placeholder=" "
+                      className="w-full h-12 px-4 bg-white rounded-full border-2 border-gray-300 focus:outline-none focus:border-red-700 transition-all peer placeholder-transparent"
                     />
-                  </div>
-
-                  {/* City, State, ZIP */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div className="space-y-3">
-                      <label className="text-lg font-medium text-zinc-600">
-                        City
-                      </label>
-                      <input
-                        type="text"
-                        name="city"
-                        value={formData.city}
-                        onChange={handleInputChange}
-                        className="w-full h-14 px-3 bg-white rounded-[10px] border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all"
-                        placeholder="City"
-                      />
-                    </div>
-
-                    <div className="space-y-3">
-                      <label className="text-lg font-medium text-zinc-600">
-                        State
-                      </label>
-                      <input
-                        type="text"
-                        name="state"
-                        value={formData.state}
-                        onChange={handleInputChange}
-                        className="w-full h-14 px-3 bg-white rounded-[10px] border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all"
-                        placeholder="State"
-                      />
-                    </div>
-
-                    <div className="space-y-3">
-                      <label className="text-lg font-medium text-zinc-600">
-                        ZIP
-                      </label>
-                      <input
-                        type="text"
-                        name="zip"
-                        value={formData.zip}
-                        onChange={handleInputChange}
-                        className="w-full h-14 px-3 bg-white rounded-[10px] border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all"
-                        placeholder="ZIP Code"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Description */}
-                  <div className="space-y-3">
-                    <label className="text-lg font-medium text-zinc-600">
-                      Description
+                    <label
+                      className={`absolute left-4 bg-white px-2 transition-all duration-200 pointer-events-none ${
+                        formData.mobile || focusedField === "mobile"
+                          ? "-top-2.5 text-xs text-red-700"
+                          : "top-3 text-base text-gray-500"
+                      }`}
+                    >
+                      Phone
                     </label>
-                    <textarea
+                  </div>
+                </div>
+
+                {/* Address */}
+                <div>
+                  <label className="text-sm font-semibold text-gray-900 mb-2 block">
+                    Address{" "}
+                    <span className="text-red-600">This value is required</span>
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="text"
                       name="description"
                       value={formData.description}
                       onChange={handleInputChange}
-                      rows={4}
-                      className="w-full px-3 py-3 bg-white rounded-[20px] border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all resize-none"
-                      placeholder="Additional delivery instructions (optional)"
+                      onFocus={() => setFocusedField("description")}
+                      onBlur={() => setFocusedField(null)}
+                      placeholder=" "
+                      className="w-full h-12 px-4 bg-white rounded-full border-2 border-gray-300 focus:outline-none focus:border-red-700 transition-all peer placeholder-transparent"
                     />
-                  </div>
-
-                  {/* Shipping Details */}
-                  <div className="space-y-6 pt-4">
-                    <h3 className="text-lg font-bold text-neutral-900">
-                      Shipping Details
-                    </h3>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {shippingOptions.map((option) => (
-                        <motion.label
-                          key={option.id}
-                          htmlFor={`shipping-${option.id}`}
-                          className={`relative p-6 bg-white rounded-[50px] border-2 cursor-pointer transition-all ${
-                            selectedShipping === option.id
-                              ? "border-sky-500 shadow-lg ring-2 ring-sky-200"
-                              : "border-neutral-200 hover:border-sky-300"
-                          }`}
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                        >
-                          <input
-                            type="radio"
-                            id={`shipping-${option.id}`}
-                            name="shipping"
-                            value={option.id}
-                            checked={selectedShipping === option.id}
-                            onChange={() => setSelectedShipping(option.id)}
-                            className="sr-only"
-                          />
-
-                          <div className="flex justify-between items-start">
-                            <div className="flex items-start gap-4">
-                              {/* Custom Radio Button */}
-                              <div className="relative w-6 h-6 flex-shrink-0 mt-0.5">
-                                <div
-                                  className={`w-6 h-6 rounded-full border-2 transition-all flex items-center justify-center ${
-                                    selectedShipping === option.id
-                                      ? "border-sky-500 bg-white"
-                                      : "border-gray-400 bg-white"
-                                  }`}
-                                >
-                                  {selectedShipping === option.id && (
-                                    <motion.div
-                                      className="w-3 h-3 bg-sky-500 rounded-full"
-                                      initial={{ scale: 0 }}
-                                      animate={{ scale: 1 }}
-                                      transition={{
-                                        type: "spring",
-                                        stiffness: 300,
-                                        damping: 20,
-                                      }}
-                                    />
-                                  )}
-                                </div>
-                              </div>
-
-                              <div className="text-left">
-                                <div
-                                  className={`text-lg font-semibold transition-colors ${
-                                    selectedShipping === option.id
-                                      ? "text-sky-600"
-                                      : "text-zinc-700"
-                                  }`}
-                                >
-                                  {option.name}
-                                </div>
-                                <div className="text-base text-zinc-500 mt-1">
-                                  {option.duration}
-                                </div>
-                              </div>
-                            </div>
-
-                            <div
-                              className={`text-lg font-bold transition-colors ${
-                                selectedShipping === option.id
-                                  ? "text-sky-600"
-                                  : "text-zinc-600"
-                              }`}
-                            >
-                              AED {option.price}
-                            </div>
-                          </div>
-                        </motion.label>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Right Section - Order Summary & Payment */}
-          <div className="w-full lg:w-[400px] space-y-10 mt-30">
-            {/* Order Summary */}
-            <motion.div
-              className="bg-sky-100 rounded-2xl shadow-[2px_4px_10px_0px_rgba(0,0,0,0.10)] p-6 space-y-6"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <h3 className="text-base font-bold text-neutral-900">
-                Orders Summary
-              </h3>
-
-              <div className="space-y-6">
-                <div className="h-px bg-zinc-300" />
-
-                <div className="flex justify-between items-center">
-                  <span className="text-base font-medium text-black">
-                    Subtotal
-                  </span>
-                  <span className="text-base font-medium text-black">
-                    AED {subtotal.toFixed(2)}
-                  </span>
-                </div>
-
-                <div className="flex justify-between items-center">
-                  <span className="text-base font-medium text-black">
-                    Shipping fee
-                  </span>
-                  <span className="text-base font-medium text-black">
-                    AED {shippingFee.toFixed(2)}
-                  </span>
-                </div>
-
-                {couponApplied && (
-                  <motion.div
-                    className="flex justify-between items-center text-green-600"
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                  >
-                    <span className="text-base font-medium">Discount</span>
-                    <span className="text-base font-medium">
-                      -AED {discount.toFixed(2)}
-                    </span>
-                  </motion.div>
-                )}
-
-                <div className="h-px bg-zinc-300" />
-
-                <div className="flex justify-between items-center">
-                  <span className="text-base font-medium text-black">
-                    Total Order
-                  </span>
-                  <span className="text-lg font-bold text-black">
-                    AED {total.toFixed(2)}
-                  </span>
-                </div>
-
-                {/* Coupon Code */}
-                <div className="relative">
-                  <input
-                    type="text"
-                    value={couponCode}
-                    onChange={(e) => setCouponCode(e.target.value)}
-                    placeholder="Coupon Code"
-                    disabled={couponApplied}
-                    className="w-full h-12 pl-4 pr-28 bg-white rounded-[50px] border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-sky-500 text-base font-medium text-zinc-600 disabled:bg-gray-100"
-                  />
-                  <motion.button
-                    onClick={handleApplyCoupon}
-                    disabled={couponApplied || !couponCode.trim()}
-                    className="absolute right-0 top-0 h-12 px-7 bg-sky-500 text-white rounded-r-[50px] border border-sky-500 hover:bg-sky-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    {couponApplied ? (
-                      <CheckCircle2 className="w-5 h-5" />
-                    ) : (
-                      "Apply"
-                    )}
-                  </motion.button>
-                </div>
-
-                {/* Checkout Button */}
-                <motion.button
-                  onClick={handleCheckout}
-                  className="w-full h-12 bg-sky-500 text-white rounded-[100px] border border-sky-500 hover:bg-sky-600 transition-colors font-bold uppercase text-base flex items-center justify-center gap-2"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Truck className="w-5 h-5" />
-                  Process to Checkout
-                </motion.button>
-              </div>
-            </motion.div>
-
-            {/* Payment Methods */}
-            <motion.div
-              className="bg-sky-100 rounded-2xl shadow-[2px_4px_10px_0px_rgba(0,0,0,0.10)] p-6 space-y-6"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <h3 className="text-lg font-bold text-neutral-900">
-                Payment Methods
-              </h3>
-
-              <div className="space-y-3">
-                {paymentMethods.map((method) => (
-                  <motion.label
-                    key={method.id}
-                    htmlFor={`payment-${method.id}`}
-                    className={`flex items-center gap-3 p-4 rounded-xl cursor-pointer transition-all ${
-                      selectedPayment === method.id
-                        ? "bg-white shadow-md"
-                        : "hover:bg-white/50"
-                    }`}
-                    whileHover={{ x: 4 }}
-                  >
-                    <input
-                      type="radio"
-                      id={`payment-${method.id}`}
-                      name="payment"
-                      value={method.id}
-                      checked={selectedPayment === method.id}
-                      onChange={() => setSelectedPayment(method.id)}
-                      className="sr-only"
-                    />
-
-                    {/* Custom Radio Button */}
-                    <div className="relative w-6 h-6 flex-shrink-0">
-                      <div
-                        className={`w-6 h-6 rounded-full border-2 transition-all flex items-center justify-center ${
-                          selectedPayment === method.id
-                            ? "border-sky-500 bg-white"
-                            : "border-gray-400 bg-white"
-                        }`}
-                      >
-                        {selectedPayment === method.id && (
-                          <motion.div
-                            className="w-3 h-3 bg-sky-500 rounded-full"
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{
-                              type: "spring",
-                              stiffness: 300,
-                              damping: 20,
-                            }}
-                          />
-                        )}
-                      </div>
-                    </div>
-
-                    <span
-                      className={`text-lg font-medium flex items-center gap-2 transition-colors ${
-                        selectedPayment === method.id
-                          ? "text-sky-600"
-                          : "text-neutral-900"
+                    <label
+                      className={`absolute left-4 bg-white px-2 transition-all duration-200 pointer-events-none ${
+                        formData.description || focusedField === "description"
+                          ? "-top-2.5 text-xs text-red-700"
+                          : "top-3 text-base text-gray-500"
                       }`}
                     >
-                      {method.icon}
-                      {method.name}
-                    </span>
-                  </motion.label>
-                ))}
+                      I commented in this portion
+                    </label>
+                  </div>
+                </div>
+
+                {/* City & Zip Code */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      name="city"
+                      value={formData.city}
+                      onChange={handleInputChange}
+                      onFocus={() => setFocusedField("city")}
+                      onBlur={() => setFocusedField(null)}
+                      placeholder=" "
+                      className="w-full h-12 px-4 bg-white rounded-full border-2 border-gray-300 focus:outline-none focus:border-red-700 transition-all peer placeholder-transparent"
+                    />
+                    <label
+                      className={`absolute left-4 bg-white px-2 transition-all duration-200 pointer-events-none ${
+                        formData.city || focusedField === "city"
+                          ? "-top-2.5 text-xs text-red-700"
+                          : "top-3 text-base text-gray-500"
+                      }`}
+                    >
+                      City
+                    </label>
+                  </div>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      name="zip"
+                      value={formData.zip}
+                      onChange={handleInputChange}
+                      onFocus={() => setFocusedField("zip")}
+                      onBlur={() => setFocusedField(null)}
+                      placeholder=" "
+                      className="w-full h-12 px-4 bg-white rounded-full border-2 border-gray-300 focus:outline-none focus:border-red-700 transition-all peer placeholder-transparent"
+                    />
+                    <label
+                      className={`absolute left-4 bg-white px-2 transition-all duration-200 pointer-events-none ${
+                        formData.zip || focusedField === "zip"
+                          ? "-top-2.5 text-xs text-red-700"
+                          : "top-3 text-base text-gray-500"
+                      }`}
+                    >
+                      Zip Code
+                    </label>
+                  </div>
+                </div>
+
+                {/* Country */}
+                <div>
+                  <label className="text-sm font-semibold text-gray-900 mb-2 block">
+                    Country
+                  </label>
+                  <select
+                    name="state"
+                    value={formData.state}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        state: e.target.value,
+                      }))
+                    }
+                    className="w-full h-12 px-4 bg-white rounded-full border-2 border-gray-300 focus:outline-none focus:border-red-700 transition-all appearance-none"
+                  >
+                    <option value="">Select</option>
+                    <option value="UAE">United Arab Emirates</option>
+                    <option value="USA">United States</option>
+                    <option value="UK">United Kingdom</option>
+                  </select>
+                </div>
+
+                {/* Continue Button */}
+                <button className="w-40 h-12 bg-red-700 text-white rounded-full font-semibold hover:bg-red-800 transition-colors cursor-pointer shadow">
+                  Continue
+                </button>
               </div>
-            </motion.div>
+            </div>
+
+            {/* Right Section - Order Summary & Payment */}
+            <div className="space-y-8">
+              {/* Orders Summary */}
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-gray-900">
+                  Orders Summary
+                </h3>
+
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-base text-gray-700">Subtotal</span>
+                    <span className="text-base font-semibold text-gray-900">
+                      AED. {subtotal.toFixed(2)}
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between items-center">
+                    <span className="text-base text-gray-700">
+                      Shipping fee
+                    </span>
+                    <span className="text-base font-semibold text-gray-900">
+                      AED. {shippingFee.toFixed(2)}
+                    </span>
+                  </div>
+
+                  <div className="h-px bg-gray-300 my-4" />
+
+                  <div className="flex justify-between items-center">
+                    <span className="text-lg font-bold text-gray-900">
+                      Total Order
+                    </span>
+                    <span className="text-lg font-bold text-gray-900">
+                      AED. {total.toFixed(2)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Payment Details */}
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-gray-900">
+                  Payment Details
+                </h3>
+
+                <div className="space-y-4">
+                  <p className="text-base text-gray-700 font-medium">
+                    Payment methods
+                  </p>
+
+                  {/* Cash on Delivery */}
+                  <label className="flex items-center gap-3 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="payment"
+                      value="cod"
+                      checked={selectedPayment === "cod"}
+                      onChange={() => setSelectedPayment("cod")}
+                      className="w-5 h-5 text-red-700 border-gray-300 focus:ring-red-700"
+                    />
+                    <span className="text-base text-gray-900">
+                      Cash on Delivery
+                    </span>
+                  </label>
+
+                  {/* Online Payment */}
+                  <label className="flex items-center gap-3 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="payment"
+                      value="online"
+                      checked={selectedPayment === "online"}
+                      onChange={() => setSelectedPayment("online")}
+                      className="w-5 h-5 text-red-700 border-gray-300 focus:ring-red-700"
+                    />
+                    <div className="flex items-center gap-2">
+                      <span className="text-base text-gray-900">
+                        Online Payment
+                      </span>
+                      <div className="flex gap-2">
+                        <span className="text-blue-600 font-bold text-sm">
+                          VISA
+                        </span>
+                        <span className="text-orange-600 font-bold text-sm">
+                          MC
+                        </span>
+                        <span className="text-orange-500 font-bold text-sm">
+                          DISCOVER
+                        </span>
+                        <span className="text-blue-500 font-bold text-sm">
+                          PayPal
+                        </span>
+                      </div>
+                    </div>
+                  </label>
+
+                  {/* Bank Transfer */}
+                  <label className="flex items-center gap-3 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="payment"
+                      value="bank"
+                      checked={selectedPayment === "bank"}
+                      onChange={() => setSelectedPayment("bank")}
+                      className="w-5 h-5 text-red-700 border-gray-300 focus:ring-red-700"
+                    />
+                    <span className="text-base text-gray-900">
+                      Bank Transfer
+                    </span>
+                  </label>
+                </div>
+
+                {/* Place Order Button */}
+                <button
+                  onClick={handleCheckout}
+                  className="w-full h-14 bg-red-700 text-white rounded-full font-bold text-lg hover:bg-red-800 transition-colors uppercase shadow cursor-pointer"
+                >
+                  PLACE ORDER
+                </button>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+      <div className="my-20">
+        <DownloadOurApp />
       </div>
     </div>
   );

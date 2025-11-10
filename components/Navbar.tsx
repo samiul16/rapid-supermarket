@@ -201,7 +201,7 @@ const Navbar = () => {
       className={`fixed top-0 left-0 right-0 transition-all duration-300 py-2 ${styles.navBg} hover:bg-white border-b border-white/10 shadow group`}
       style={{ zIndex: 9998 }}
     >
-      <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-20 pt-1">
+      <div className="w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-28 pt-1">
         <div className="flex items-center justify-between h-14 sm:h-14">
           {/* Logo */}
           <div className="flex-shrink-0">
@@ -251,14 +251,14 @@ const Navbar = () => {
                 PRODUCTS
               </Link>
               <Link
-                href="/career"
+                href="/blogs"
                 className={`${
-                  pathname === "/career" ? styles.activeColor : styles.textColor
+                  pathname === "/blogs" ? styles.activeColor : styles.textColor
                 } ${
                   styles.hoverColor
                 } group-hover:text-red-900 font-semibold transition-colors text-lg font-anek uppercase`}
               >
-                CAREER
+                BLOGS
               </Link>
               <Link
                 href="/about"
@@ -540,13 +540,13 @@ const Navbar = () => {
               PRODUCTS
             </Link>
             <Link
-              href="/career"
+              href="/blogs"
               onClick={() => setIsMobileMenuOpen(false)}
               className={`${
-                pathname === "/career" ? "text-red-900" : "text-white/80"
+                pathname === "/blogs" ? "text-red-900" : "text-white/80"
               } hover:text-red-900  font-semibold transition-colors text-xl py-2 font-anek`}
             >
-              CAREER
+              BLOGS
             </Link>
             <Link
               href="/about"

@@ -75,10 +75,9 @@ export default function Page() {
     <div className="bg-white min-h-screen">
       <div data-aos="fade-up">
         <CommonHeader
-          breadcrumbs={[
-            { label: "Home", href: "/" },
-            { label: "Help & Support", isActive: true },
-          ]}
+          heroImage="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&q=80"
+          heroTitle="Help & Support"
+          heroDescription="Please read these terms and conditions carefully before using our services."
         />
       </div>
 
@@ -92,7 +91,7 @@ export default function Page() {
         >
           <motion.h1
             variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold text-cyan-900 mb-6"
+            className="text-4xl md:text-5xl font-bold text-red-900 mb-6"
           >
             Help & Support Center
           </motion.h1>
@@ -180,7 +179,7 @@ export default function Page() {
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
                   <Truck className="w-6 h-6 text-blue-600" />
                 </div>
-                <h2 className="text-2xl font-bold text-cyan-900">
+                <h2 className="text-2xl font-bold text-red-900">
                   Shipping Information
                 </h2>
               </div>
@@ -265,7 +264,7 @@ export default function Page() {
                 <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
                   <RotateCcw className="w-6 h-6 text-red-600" />
                 </div>
-                <h2 className="text-2xl font-bold text-cyan-900">
+                <h2 className="text-2xl font-bold text-red-900">
                   Returns Policy
                 </h2>
               </div>
@@ -339,7 +338,7 @@ export default function Page() {
                 <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
                   <ShoppingCart className="w-6 h-6 text-green-600" />
                 </div>
-                <h2 className="text-2xl font-bold text-cyan-900">
+                <h2 className="text-2xl font-bold text-red-900">
                   How to Order
                 </h2>
               </div>
@@ -377,7 +376,7 @@ export default function Page() {
                   },
                 ].map((item, index) => (
                   <div key={index} className="flex items-start">
-                    <div className="w-8 h-8 bg-sky-500 text-white rounded-full flex items-center justify-center mr-4 flex-shrink-0 font-bold text-sm">
+                    <div className="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center mr-4 flex-shrink-0 font-bold text-sm">
                       {item.step}
                     </div>
                     <div className="flex-1">
@@ -412,7 +411,7 @@ export default function Page() {
                 <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
                   <Search className="w-6 h-6 text-purple-600" />
                 </div>
-                <h2 className="text-2xl font-bold text-cyan-900">
+                <h2 className="text-2xl font-bold text-red-900">
                   How to Track Your Order
                 </h2>
               </div>
@@ -491,7 +490,7 @@ export default function Page() {
                 <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
                   <CheckCircle className="w-6 h-6 text-green-600" />
                 </div>
-                <h2 className="text-2xl font-bold text-cyan-900">
+                <h2 className="text-2xl font-bold text-red-900">
                   How to Confirm
                 </h2>
               </div>

@@ -2,16 +2,18 @@
 
 import React, { useState } from "react";
 import {
-  Phone,
-  Mail,
-  MapPin,
-  Send,
   CheckCircle,
   AlertCircle,
+  ShoppingCart,
+  ArrowRight,
 } from "lucide-react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { toast } from "react-hot-toast";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import CommonHeader from "@/components/Common/CommonHeader";
+import Deliver from "@/components/Deliver";
+import DownloadOurApp from "@/components/DownloadOurApp";
 
 interface FormData {
   fullName: string;
@@ -21,15 +23,8 @@ interface FormData {
   message: string;
 }
 
-interface ContactCard {
-  id: number;
-  icon: React.ElementType;
-  title: string;
-  content: string;
-  link?: string;
-}
-
 export default function ContactPage() {
+  const router = useRouter();
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     phone: "",
@@ -37,37 +32,30 @@ export default function ContactPage() {
     description: "",
     message: "",
   });
-
+  const [focusedField, setFocusedField] = useState<string | null>(null);
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: "success" | "error" | null;
     message: string;
   }>({ type: null, message: "" });
-  const [focusedField, setFocusedField] = useState<string | null>(null);
 
-  const contactInfo: ContactCard[] = [
-    {
-      id: 1,
-      icon: Phone,
-      title: "Phone",
-      content: "+971 54 324 7559",
-      link: "tel:+971543247559",
+  const contactInfo = {
+    description:
+      "We're here to help you with all your grocery needs. Our fresh products and excellent customer service ensure you get the best shopping experience every time you visit us.",
+    storeLocation: {
+      title: "Store Location",
+      address:
+        "Fortune Executive - Cluster T - Jumeirah Lake Towers - Dubai - United Arab Emirates",
     },
-    {
-      id: 2,
-      icon: Mail,
-      title: "Email",
-      content: "marium.marufa@gmail.com",
-      link: "mailto:marium.marufa@gmail.com",
+    contactDetails: {
+      title: "Contact info",
+      phone: "+971 4 439 7277",
+      email: "info@MizanurSuperMarket.com",
+      openingHours: "9 am - 6 pm",
+      closedDay: "Sunday",
     },
-    {
-      id: 3,
-      icon: MapPin,
-      title: "Location",
-      content: "Al Rashidiya 1 - Ajman - United Arab Emirates",
-      link: "https://maps.google.com/?q=Al+Rashidiya+1+Ajman+United+Arab+Emirates",
-    },
-  ];
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -96,7 +84,6 @@ export default function ContactPage() {
 
       if (response.ok) {
         toast.success("Message sent successfully!");
-        // Reset form
         setFormData({
           fullName: "",
           phone: "",
@@ -104,8 +91,8 @@ export default function ContactPage() {
           description: "",
           message: "",
         });
+        setAgreeToTerms(false);
 
-        // Auto-hide success message after 5 seconds
         setTimeout(() => {
           setSubmitStatus({ type: null, message: "" });
         }, 5000);
@@ -120,18 +107,7 @@ export default function ContactPage() {
     }
   };
 
-  // Animation variants
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const cardVariants: Variants = {
+  const formVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
@@ -142,148 +118,67 @@ export default function ContactPage() {
     },
   };
 
-  const formVariants: Variants = {
-    hidden: { opacity: 0, x: 30 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
-
   return (
     <>
-      <CommonHeader
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Contact", isActive: true },
-        ]}
-      />
-      <div className="w-full bg-white py-12 md:py-16 lg:py-20">
-        <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16">
+      <div className="w-full bg-white">
+        <CommonHeader
+          heroImage="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&q=80"
+          heroTitle="Contact Us"
+          heroDescription="Discover the finest menus in town with Excellency."
+        />
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-10 xl:px-28 py-20">
           {/* Page Title */}
           <motion.div
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-12"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-sky-500 mb-4">
-              Get In Touch
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3">
+              Contact Us
             </h1>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-              Have questions? We&apos;d love to hear from you. Send us a message
-              and we&apos;ll respond as soon as possible.
+            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+              Fill out the from below or schedule a meeting with us at your
+              convenience.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
-            {/* Left Side - Contact Info Cards */}
-            <motion.div
-              className="flex flex-col justify-between gap-6 order-2 lg:order-1"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={containerVariants}
-            >
-              {contactInfo.map((info) => {
-                const Icon = info.icon;
-
-                return (
-                  <motion.div
-                    key={info.id}
-                    className="group flex-1"
-                    variants={cardVariants}
-                    whileHover={{ y: -5, transition: { duration: 0.3 } }}
-                  >
-                    <div className="bg-white rounded-[32px] shadow-[0px_0px_6px_0px_rgba(0,0,0,0.16)] p-6 md:p-8 h-full flex flex-col hover:shadow-[0px_4px_12px_0px_rgba(0,0,0,0.12)] transition-shadow duration-300">
-                      {/* Icon and Title */}
-                      <div className="flex items-center gap-4 mb-6">
-                        <motion.div
-                          className="w-14 h-14 bg-sky-100 rounded-full flex items-center justify-center group-hover:bg-sky-500 transition-colors duration-300"
-                          whileHover={{ rotate: 360, scale: 1.1 }}
-                          transition={{ duration: 0.5 }}
-                        >
-                          <Icon className="w-7 h-7 text-sky-500 group-hover:text-white transition-colors duration-300" />
-                        </motion.div>
-                        <h3 className="text-2xl sm:text-3xl font-bold text-sky-500">
-                          {info.title}
-                        </h3>
-                      </div>
-
-                      {/* Content */}
-                      <div className="flex-1 flex items-center">
-                        {info.link ? (
-                          <a
-                            href={info.link}
-                            target={
-                              info.title === "Location" ? "_blank" : undefined
-                            }
-                            rel={
-                              info.title === "Location"
-                                ? "noopener noreferrer"
-                                : undefined
-                            }
-                            className="text-lg sm:text-xl font-bold text-sky-600 hover:text-sky-500 transition-colors duration-300 block"
-                          >
-                            {info.content}
-                          </a>
+          {/* Main Contact Container - Single Pink Box */}
+          <motion.div
+            className="bg-white rounded-3xl shadow p-6 sm:p-8 lg:p-12 mb-16 border border-gray-300"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={formVariants}
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+              {/* Left Side - Contact Form */}
+              <div>
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <AnimatePresence>
+                    {submitStatus.type && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10, height: 0 }}
+                        animate={{ opacity: 1, y: 0, height: "auto" }}
+                        exit={{ opacity: 0, y: -10, height: 0 }}
+                        className={`mb-5 p-4 rounded-lg flex items-start gap-3 ${
+                          submitStatus.type === "success"
+                            ? "bg-green-50 text-green-800 border border-green-200"
+                            : "bg-red-50 text-red-800 border border-red-200"
+                        }`}
+                      >
+                        {submitStatus.type === "success" ? (
+                          <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
                         ) : (
-                          <p className="text-lg sm:text-xl font-bold text-sky-500 leading-relaxed">
-                            {info.content}
-                          </p>
+                          <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
                         )}
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
+                        <p className="text-sm font-medium leading-relaxed">
+                          {submitStatus.message}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
 
-            {/* Right Side - Contact Form */}
-            <motion.div
-              className="bg-white rounded-[32px] shadow-[0px_0px_6px_0px_rgba(0,0,0,0.16)] p-6 sm:p-8 lg:p-10 order-1 lg:order-2 flex flex-col"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={formVariants}
-            >
-              <form onSubmit={handleSubmit} className="flex flex-col h-full">
-                {/* Title */}
-                <h2 className="text-3xl sm:text-4xl font-bold text-sky-500 mb-6">
-                  Send us a Message
-                </h2>
-
-                {/* Status Messages */}
-                <AnimatePresence>
-                  {submitStatus.type && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10, height: 0 }}
-                      animate={{ opacity: 1, y: 0, height: "auto" }}
-                      exit={{ opacity: 0, y: -10, height: 0 }}
-                      className={`mb-5 p-4 rounded-lg flex items-start gap-3 ${
-                        submitStatus.type === "success"
-                          ? "bg-green-50 text-green-800 border border-green-200"
-                          : "bg-red-50 text-red-800 border border-red-200"
-                      }`}
-                    >
-                      {submitStatus.type === "success" ? (
-                        <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                      ) : (
-                        <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                      )}
-                      <p className="text-sm font-medium leading-relaxed">
-                        {submitStatus.message}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                {/* Form Fields Container */}
-                <div className="space-y-5 flex-1">
-                  {/* Name Field */}
                   <div className="relative">
                     <input
                       type="text"
@@ -295,45 +190,19 @@ export default function ContactPage() {
                       placeholder=" "
                       required
                       disabled={isSubmitting}
-                      className="w-full px-4 py-3 bg-white rounded-lg border border-gray-300 text-gray-900 text-base font-normal focus:outline-none focus:border-sky-500 transition-all peer placeholder-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full h-12 px-4 bg-white rounded-full border-2 border-gray-300 focus:outline-none focus:border-red-700 transition-all peer placeholder-transparent disabled:opacity-50 disabled:cursor-not-allowed"
                     />
                     <label
-                      className={`absolute left-3 top-0 bg-white px-1 transition-all duration-200 pointer-events-none ${
+                      className={`absolute left-4 bg-white px-2 transition-all duration-200 pointer-events-none ${
                         formData.fullName || focusedField === "fullName"
-                          ? "-translate-y-1/2 text-xs text-sky-500"
-                          : "translate-y-3 text-base text-gray-500"
+                          ? "-top-2.5 text-xs text-red-700"
+                          : "top-3 text-base text-gray-500"
                       }`}
                     >
-                      Full Name *
+                      Full Name
                     </label>
                   </div>
 
-                  {/* Phone Field */}
-                  <div className="relative">
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      onFocus={() => setFocusedField("phone")}
-                      onBlur={() => setFocusedField(null)}
-                      placeholder=" "
-                      required
-                      disabled={isSubmitting}
-                      className="w-full px-4 py-3 bg-white rounded-lg border border-gray-300 text-gray-900 text-base font-normal focus:outline-none focus:border-sky-500 transition-all peer placeholder-transparent disabled:opacity-50 disabled:cursor-not-allowed"
-                    />
-                    <label
-                      className={`absolute left-3 top-0 bg-white px-1 transition-all duration-200 pointer-events-none ${
-                        formData.phone || focusedField === "phone"
-                          ? "-translate-y-1/2 text-xs text-sky-500"
-                          : "translate-y-3 text-base text-gray-500"
-                      }`}
-                    >
-                      Phone Number *
-                    </label>
-                  </div>
-
-                  {/* Email Field */}
                   <div className="relative">
                     <input
                       type="email"
@@ -345,21 +214,44 @@ export default function ContactPage() {
                       placeholder=" "
                       required
                       disabled={isSubmitting}
-                      className="w-full px-4 py-3 bg-white rounded-lg border border-gray-300 text-gray-900 text-base font-normal focus:outline-none focus:border-sky-500 transition-all peer placeholder-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full h-12 px-4 bg-white rounded-full border-2 border-gray-300 focus:outline-none focus:border-red-700 transition-all peer placeholder-transparent disabled:opacity-50 disabled:cursor-not-allowed"
                     />
                     <label
-                      className={`absolute left-3 top-0 bg-white px-1 transition-all duration-200 pointer-events-none ${
+                      className={`absolute left-4 bg-white px-2 transition-all duration-200 pointer-events-none ${
                         formData.email || focusedField === "email"
-                          ? "-translate-y-1/2 text-xs text-sky-500"
-                          : "translate-y-3 text-base text-gray-500"
+                          ? "-top-2.5 text-xs text-red-700"
+                          : "top-3 text-base text-gray-500"
                       }`}
                     >
-                      Email Address *
+                      Email Address
                     </label>
                   </div>
 
-                  {/* Message Textarea */}
-                  <div className="relative flex-1">
+                  <div className="relative">
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      onFocus={() => setFocusedField("phone")}
+                      onBlur={() => setFocusedField(null)}
+                      placeholder=" "
+                      required
+                      disabled={isSubmitting}
+                      className="w-full h-12 px-4 bg-white rounded-full border-2 border-gray-300 focus:outline-none focus:border-red-700 transition-all peer placeholder-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+                    />
+                    <label
+                      className={`absolute left-4 bg-white px-2 transition-all duration-200 pointer-events-none ${
+                        formData.phone || focusedField === "phone"
+                          ? "-top-2.5 text-xs text-red-700"
+                          : "top-3 text-base text-gray-500"
+                      }`}
+                    >
+                      Phone Number
+                    </label>
+                  </div>
+
+                  <div className="relative">
                     <textarea
                       name="message"
                       value={formData.message}
@@ -368,33 +260,59 @@ export default function ContactPage() {
                       onBlur={() => setFocusedField(null)}
                       placeholder=" "
                       required
-                      className="w-full h-full min-h-[120px] px-4 py-3 bg-white rounded-lg border border-gray-300 text-gray-900 text-base font-normal focus:outline-none focus:border-sky-500 transition-all resize-none peer placeholder-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+                      rows={5}
+                      className="w-full px-4 py-3 bg-white rounded-2xl border-2 border-gray-300 focus:outline-none focus:border-red-700 transition-all peer placeholder-transparent resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                       disabled={isSubmitting}
                     />
                     <label
-                      className={`absolute left-3 top-0 bg-white px-1 transition-all duration-200 pointer-events-none ${
+                      className={`absolute left-4 bg-white px-2 transition-all duration-200 pointer-events-none ${
                         formData.message || focusedField === "message"
-                          ? "-translate-y-1/2 text-xs text-sky-500"
-                          : "translate-y-3 text-base text-gray-500"
+                          ? "-top-2.5 text-xs text-red-700"
+                          : "top-3 text-base text-gray-500"
                       }`}
                     >
-                      Message *
+                      Your Message
                     </label>
                   </div>
-                </div>
 
-                {/* Submit Button */}
-                <div className="pt-6">
+                  <div className="flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      id="terms"
+                      checked={agreeToTerms}
+                      onChange={(e) => setAgreeToTerms(e.target.checked)}
+                      className="mt-1 w-4 h-4 rounded border-gray-300 text-red-700 focus:ring-red-500 cursor-pointer"
+                      required
+                    />
+                    <label
+                      htmlFor="terms"
+                      className="text-sm text-gray-700 cursor-pointer"
+                    >
+                      I agree to the{" "}
+                      <span className="text-red-700 font-medium">
+                        terms & conditions
+                      </span>{" "}
+                      and{" "}
+                      <span className="text-red-700 font-medium">
+                        privacy policy
+                      </span>
+                    </label>
+                  </div>
+
                   <motion.button
                     type="submit"
-                    disabled={isSubmitting}
-                    className={`w-full px-8 py-4 bg-sky-500 hover:bg-sky-600 rounded-[84px] text-white text-xl font-bold uppercase tracking-wide transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
-                      isSubmitting
+                    disabled={isSubmitting || !agreeToTerms}
+                    className={`w-full px-8 py-4 bg-red-700 hover:bg-red-800 rounded-full text-white text-lg font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
+                      isSubmitting || !agreeToTerms
                         ? "opacity-50 cursor-not-allowed"
                         : "hover:shadow-lg"
                     }`}
-                    whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-                    whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                    whileHover={{
+                      scale: isSubmitting || !agreeToTerms ? 1 : 1.02,
+                    }}
+                    whileTap={{
+                      scale: isSubmitting || !agreeToTerms ? 1 : 0.98,
+                    }}
                   >
                     {isSubmitting ? (
                       <>
@@ -402,16 +320,208 @@ export default function ContactPage() {
                         Sending...
                       </>
                     ) : (
-                      <>
-                        Submit
-                        <Send className="w-5 h-5" />
-                      </>
+                      "Send Message"
                     )}
                   </motion.button>
+                </form>
+              </div>
+
+              {/* Right Side - Contact Info */}
+              <div className="space-y-6">
+                <div>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
+                    Contact Us
+                  </h2>
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                    {contactInfo.description}
+                  </p>
                 </div>
-              </form>
+
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">
+                    {contactInfo.storeLocation.title}
+                  </h3>
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                    {contactInfo.storeLocation.address}
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">
+                    {contactInfo.contactDetails.title}
+                  </h3>
+                  <div className="space-y-2 text-sm sm:text-base text-gray-600">
+                    <p>
+                      <span className="font-medium">Phone:</span>{" "}
+                      <a
+                        href={`tel:${contactInfo.contactDetails.phone}`}
+                        className="hover:text-red-700 transition-colors"
+                      >
+                        {contactInfo.contactDetails.phone}
+                      </a>
+                    </p>
+                    <p>
+                      <span className="font-medium">E-mail:</span>{" "}
+                      <a
+                        href={`mailto:${contactInfo.contactDetails.email}`}
+                        className="hover:text-red-700 transition-colors"
+                      >
+                        {contactInfo.contactDetails.email}
+                      </a>
+                    </p>
+                    <p>
+                      <span className="font-medium">Opening Hours:</span>{" "}
+                      {contactInfo.contactDetails.openingHours}
+                    </p>
+                    <p>
+                      <span className="font-medium">Close:</span>{" "}
+                      {contactInfo.contactDetails.closedDay}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Trending Products Section */}
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
+            {/* Promotional Banner */}
+            <motion.div
+              className="bg-[#FFF0F0] rounded-3xl p-6 sm:p-8 flex flex-col justify-between"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <div>
+                <div className="inline-block bg-red-700 text-white px-4 py-1 rounded-full text-sm font-bold mb-4">
+                  Get35% Off
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 leading-tight">
+                  Leek Autumn Giant 45 Heirloom & Organic Canadian.
+                </h3>
+              </div>
+              <div className="space-y-4">
+                <div className="relative w-full aspect-square max-w-[200px] mx-auto">
+                  <Image
+                    src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?w=400&q=80"
+                    alt="Fresh vegetables basket"
+                    fill
+                    className="object-cover w-full h-full rounded-xl"
+                    sizes="200px"
+                  />
+                </div>
+                <button
+                  onClick={() => router.push("/products")}
+                  className="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-6 rounded-full transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  Shop Now
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </div>
             </motion.div>
+
+            {/* Trending Products Grid */}
+            <div className="lg:col-span-3">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+                Trending Products
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  {
+                    id: 1,
+                    name: "Banana",
+                    price: 20.0,
+                    image:
+                      "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&q=80",
+                    category: "Vegetables",
+                    rating: 4.5,
+                  },
+                  {
+                    id: 2,
+                    name: "Mutton",
+                    price: 20.0,
+                    image:
+                      "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=400&q=80",
+                    category: "Grocery",
+                    rating: 4.5,
+                  },
+                  {
+                    id: 3,
+                    name: "Frozen Food",
+                    price: 20.0,
+                    image:
+                      "https://images.unsplash.com/photo-1609501676725-7186f017a4b7?w=400&q=80",
+                    category: "Grocery",
+                    rating: 4.5,
+                  },
+                ].map((product) => (
+                  <motion.div
+                    key={product.id}
+                    className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: product.id * 0.1 }}
+                  >
+                    <div className="relative aspect-square bg-gray-50 overflow-hidden">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        className="object-cover w-full h-full"
+                        sizes="300px"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm text-gray-500">
+                          {product.category}
+                        </span>
+                        <div className="flex items-center gap-1">
+                          {[...Array(5)].map((_, i) => (
+                            <svg
+                              key={i}
+                              className={`w-4 h-4 ${
+                                i < Math.floor(product.rating)
+                                  ? "text-orange-400 fill-current"
+                                  : "text-gray-300 fill-current"
+                              }`}
+                              viewBox="0 0 20 20"
+                            >
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                          ))}
+                          <span className="text-sm text-gray-600 ml-1">
+                            ({product.rating})
+                          </span>
+                        </div>
+                      </div>
+                      <h3 className="font-bold text-gray-900 mb-2 text-lg">
+                        {product.name}
+                      </h3>
+                      <div className="flex items-center justify-between">
+                        <p className="text-red-700 font-bold text-xl">
+                          AED {product.price.toFixed(2)}
+                        </p>
+                        <button className="w-10 h-10 bg-red-700 hover:bg-red-800 rounded-full flex items-center justify-center transition-colors cursor-pointer">
+                          <ShoppingCart className="w-5 h-5 text-white" />
+                        </button>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </div>
+        </div>
+
+        <div className="my-20">
+          <Deliver />
+        </div>
+
+        <div className="my-20">
+          <DownloadOurApp />
         </div>
       </div>
     </>

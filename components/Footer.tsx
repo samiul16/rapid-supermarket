@@ -7,7 +7,7 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <footer className="bg-[#630700] text-white py-12 rounded-tl-[60px] rounded-tr-[60px]">
-      <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-20 pt-4">
+      <div className="w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-28 pt-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Logo and Company Info */}
           <div className="lg:col-span-1">
@@ -102,12 +102,12 @@ const Footer = () => {
                   href="/about"
                   className="text-xl text-white hover:text-white transition-colors"
                 >
-                  Profile
+                  About
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/blog"
+                  href="/blogs"
                   className="text-xl text-white hover:text-white transition-colors"
                 >
                   Blog
@@ -115,20 +115,13 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="/career"
+                  href="/products"
                   className="text-xl text-white hover:text-white transition-colors"
                 >
-                  Careers
+                  Products
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/testimonial"
-                  className="text-xl text-white hover:text-white transition-colors"
-                >
-                  Testimonial
-                </Link>
-              </li>
+
               <li>
                 <Link
                   href="https://www.google.com/maps/search/?api=1&query=Al+Rashidiya+1+Ajman+United+Arab+Emirates"
@@ -139,13 +132,7 @@ const Footer = () => {
                   Location
                 </Link>
               </li>
-            </ul>
-          </div>
 
-          {/* Customer Care Section */}
-          <div>
-            <h3 className="text-xl font-semibold mb-4">CUSTOMER CARE</h3>
-            <ul className="space-y-2">
               <li>
                 <Link
                   href="/faq"
@@ -154,6 +141,13 @@ const Footer = () => {
                   FAQ&apos;s
                 </Link>
               </li>
+            </ul>
+          </div>
+
+          {/* Customer Care Section */}
+          <div>
+            <h3 className="text-xl font-semibold mb-4">CUSTOMER CARE</h3>
+            <ul className="space-y-4">
               <li>
                 <Link
                   href="/terms-policy"

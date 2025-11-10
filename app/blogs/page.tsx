@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import CommonHeader from "@/components/Common/CommonHeader";
 import Deliver from "@/components/Deliver";
 import DownloadOurApp from "@/components/DownloadOurApp";
@@ -11,6 +12,11 @@ import Subscribe from "@/components/Subscribe";
 const Blogs = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
+  const router = useRouter();
+
+  const handleBlogClick = (blogId: number) => {
+    router.push(`/blogs/${blogId}`);
+  };
 
   const blogPosts = [
     {
@@ -181,6 +187,7 @@ const Blogs = () => {
                       boxShadow: "0 25px 50px rgba(0, 0, 0, 0.15)",
                     }}
                     transition={{ duration: 0.3 }}
+                    onClick={() => handleBlogClick(post.id)}
                   >
                     <div className="relative overflow-hidden">
                       <img
@@ -213,6 +220,10 @@ const Blogs = () => {
                       <motion.button
                         className="inline-flex items-center gap-2 text-red-700 font-semibold text-sm hover:gap-3 transition-all duration-300"
                         whileHover={{ x: 5 }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleBlogClick(post.id);
+                        }}
                       >
                         Read More
                         <svg
@@ -322,6 +333,7 @@ const Blogs = () => {
                       className="flex gap-3 p-3 rounded-lg hover:bg-white cursor-pointer transition-all duration-300 border-b border-gray-200 last:border-b-0"
                       whileHover={{ x: 5 }}
                       transition={{ duration: 0.2 }}
+                      onClick={() => handleBlogClick(post.id)}
                     >
                       <img
                         src={post.image}
