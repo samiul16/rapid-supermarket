@@ -519,15 +519,13 @@ const Products = () => {
                     <motion.div
                       key={product.id}
                       whileHover={{ y: -4 }}
-                      className={`bg-white rounded-3xl shadow-lg overflow-hidden ${
+                      className={`bg-white rounded-3xl shadow-lg overflow-hidden cursor-pointer ${
                         product.isFeatured ? "" : ""
                       }`}
+                      onClick={() => router.push(`/products/${product.id}`)}
                     >
                       {/* Product Image */}
-                      <div
-                        className="relative aspect-square bg-gray-50 cursor-pointer"
-                        onClick={() => router.push(`/products/${product.id}`)}
-                      >
+                      <div className="relative aspect-square bg-gray-50">
                         <Image
                           fill
                           src={product.image}
@@ -538,12 +536,13 @@ const Products = () => {
                         {/* Action Icons */}
                         <div className="absolute top-4 right-4 flex flex-col gap-3">
                           <button
-                            onClick={() =>
+                            onClick={(e) => {
+                              e.stopPropagation();
                               setPreviewImage({
                                 url: product.image,
                                 name: product.name,
-                              })
-                            }
+                              });
+                            }}
                             className="w-12 h-12 bg-red-50 rounded-full shadow-md flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer"
                           >
                             <Eye className="w-5 h-5 text-red-600" />
@@ -558,12 +557,7 @@ const Products = () => {
                       <div className="p-5 space-y-2">
                         {/* Title and Price Row */}
                         <div className="flex items-center justify-between mb-1">
-                          <h3
-                            className="text-gray-900 font-bold text-base whitespace-nowrap cursor-pointer hover:text-red-700 transition-colors"
-                            onClick={() =>
-                              router.push(`/products/${product.id}`)
-                            }
-                          >
+                          <h3 className="text-gray-900 font-bold text-base whitespace-nowrap">
                             {product.name}
                           </h3>
                           <p className="text-red-600 font-bold text-[15px] whitespace-nowrap">
@@ -598,7 +592,10 @@ const Products = () => {
                           {/* Quantity Controls */}
                           <div className="flex items-center gap-2 bg-gray-50 rounded-lg px-2 py-1">
                             <button
-                              onClick={() => updateQuantity(product.id, -1)}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                updateQuantity(product.id, -1);
+                              }}
                               className="text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
                             >
                               <Minus className="w-5 h-5" />
@@ -607,7 +604,10 @@ const Products = () => {
                               {getQuantity(product.id)}
                             </span>
                             <button
-                              onClick={() => updateQuantity(product.id, 1)}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                updateQuantity(product.id, 1);
+                              }}
                               className="text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
                             >
                               <Plus className="w-5 h-5" />
@@ -617,7 +617,8 @@ const Products = () => {
 
                         {/* Add to Cart Button */}
                         <button
-                          onClick={() => {
+                          onClick={(e) => {
+                            e.stopPropagation();
                             const productData = {
                               id: product.id,
                               name: product.name,
@@ -648,13 +649,11 @@ const Products = () => {
                     <motion.div
                       key={product.id}
                       whileHover={{ x: 4 }}
-                      className="bg-white rounded-2xl shadow-md overflow-hidden flex items-center p-4 gap-4"
+                      className="bg-white rounded-2xl shadow-md overflow-hidden flex items-center p-4 gap-4 cursor-pointer"
+                      onClick={() => router.push(`/products/${product.id}`)}
                     >
                       {/* Product Image */}
-                      <div
-                        className="relative w-24 h-24 flex-shrink-0 bg-gray-50 rounded-xl overflow-hidden cursor-pointer"
-                        onClick={() => router.push(`/products/${product.id}`)}
-                      >
+                      <div className="relative w-24 h-24 flex-shrink-0 bg-gray-50 rounded-xl overflow-hidden">
                         <Image
                           fill
                           src={product.image}
@@ -667,12 +666,7 @@ const Products = () => {
                       {/* Product Info */}
                       <div className="flex-1 flex items-center justify-between gap-4">
                         <div className="flex-1">
-                          <h3
-                            className="text-gray-900 font-bold text-lg mb-1 cursor-pointer hover:text-red-700 transition-colors"
-                            onClick={() =>
-                              router.push(`/products/${product.id}`)
-                            }
-                          >
+                          <h3 className="text-gray-900 font-bold text-lg mb-1">
                             {product.name}
                           </h3>
                           <p className="text-gray-400 text-sm mb-2">
@@ -709,7 +703,10 @@ const Products = () => {
                         {/* Quantity Controls */}
                         <div className="flex items-center gap-2 bg-gray-50 rounded-lg px-2 py-1">
                           <button
-                            onClick={() => updateQuantity(product.id, -1)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              updateQuantity(product.id, -1);
+                            }}
                             className="text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
                           >
                             <Minus className="w-5 h-5" />
@@ -718,7 +715,10 @@ const Products = () => {
                             {getQuantity(product.id)}
                           </span>
                           <button
-                            onClick={() => updateQuantity(product.id, 1)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              updateQuantity(product.id, 1);
+                            }}
                             className="text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
                           >
                             <Plus className="w-5 h-5" />
@@ -728,12 +728,13 @@ const Products = () => {
                         {/* Action Buttons */}
                         <div className="flex gap-2">
                           <button
-                            onClick={() =>
+                            onClick={(e) => {
+                              e.stopPropagation();
                               setPreviewImage({
                                 url: product.image,
                                 name: product.name,
-                              })
-                            }
+                              });
+                            }}
                             className="w-12 h-12 bg-red-50 rounded-full shadow flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer"
                           >
                             <Eye className="w-5 h-5 text-red-600" />
@@ -742,7 +743,8 @@ const Products = () => {
                             <Heart className="w-5 h-5 text-red-600" />
                           </button>
                           <button
-                            onClick={() => {
+                            onClick={(e) => {
+                              e.stopPropagation();
                               const productData = {
                                 id: product.id,
                                 name: product.name,
