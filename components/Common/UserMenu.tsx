@@ -208,7 +208,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
 
                 <button
                   onClick={handleSignup}
-                  className="w-full flex items-center justify-center gap-3 px-4 py-3 border-2 border-gray-200 text-gray-700 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-colors"
+                  className="w-full flex items-center justify-center gap-3 px-4 py-3 border-2 border-gray-200 text-gray-700 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-colors cursor-pointer"
                 >
                   <UserPlus className="w-5 h-5" />
                   <span className="font-semibold">Create Account</span>
@@ -217,7 +217,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
             </div>
 
             {/* Quick Links */}
-            <div className="border-t border-gray-100 py-2">
+            {/* <div className="border-t border-gray-100 py-2">
               <Link
                 href="/tracking"
                 className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors"
@@ -233,7 +233,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                 <Settings className="w-5 h-5 text-gray-600" />
                 <span className="text-gray-700">Help & Support</span>
               </Link>
-            </div>
+            </div> */}
           </>
         )}
       </div>
