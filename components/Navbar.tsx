@@ -201,7 +201,7 @@ const Navbar = () => {
       className={`fixed top-0 left-0 right-0 transition-all duration-300 py-2 ${styles.navBg} hover:bg-white border-b border-white/10 shadow group`}
       style={{ zIndex: 9998 }}
     >
-      <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-20 pt-1">
+      <div className="w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-28 pt-1">
         <div className="flex items-center justify-between h-14 sm:h-14">
           {/* Logo */}
           <div className="flex-shrink-0">

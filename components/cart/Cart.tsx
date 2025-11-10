@@ -37,7 +37,7 @@ export default function Cart({
   const [couponCode, setCouponCode] = useState("");
 
   // Mock data for demonstration
-  const mockItems: CartItem[] = [
+  const initialMockItems: CartItem[] = [
     {
       id: "1",
       name: "Fresh Organic Avocado",
@@ -80,18 +80,41 @@ export default function Cart({
     },
   ];
 
-  const cartItems = items.length > 0 ? items : mockItems;
+  // Use state to manage cart items dynamically
+  const [cartItems, setCartItems] = useState<CartItem[]>(
+    items.length > 0 ? items : initialMockItems
+  );
+
   const subtotal = cartItems.reduce((sum, item) => sum + item.subtotal, 0);
   const shippingFee = 0;
   const totalOrder = subtotal + shippingFee;
 
   const handleQuantityChange = (id: string, newQuantity: number) => {
     if (newQuantity < 1) return;
+
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              quantity: newQuantity,
+              subtotal: item.price * newQuantity,
+            }
+          : item
+      )
+    );
+
     onUpdateQuantity?.(id, newQuantity);
   };
 
   const handleRemoveItem = (id: string) => {
+    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
     onRemoveItem?.(id);
+  };
+
+  const handleClearCart = () => {
+    setCartItems([]);
+    onClearCart?.();
   };
 
   const handleApplyCoupon = () => {
@@ -102,13 +125,13 @@ export default function Cart({
 
   return (
     <div className="bg-white min-h-screen">
-      <div className="w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-28 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-28 py-8 sm:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {/* Cart Items Section */}
           <div className="lg:col-span-2">
-            <div className="bg-pink-50 rounded-2xl shadow-sm p-6">
-              {/* Header */}
-              <div className="grid grid-cols-12 gap-4 pb-4 border-b border-gray-200 text-sm font-semibold text-gray-600">
+            <div className="bg-pink-50 rounded-2xl shadow-sm p-4 sm:p-6">
+              {/* Header - Hidden on mobile */}
+              <div className="hidden md:grid grid-cols-12 gap-4 pb-4 border-b border-gray-200 text-sm font-semibold text-gray-600">
                 <div className="col-span-5">Items</div>
                 <div className="col-span-2 text-center">Price</div>
                 <div className="col-span-3 text-center">Quantity</div>
@@ -118,73 +141,136 @@ export default function Cart({
               {/* Cart Items */}
               <div className="divide-y divide-gray-100">
                 {cartItems.map((item) => (
-                  <div
-                    key={item.id}
-                    className="grid grid-cols-12 gap-4 py-5 items-center"
-                  >
-                    {/* Product Info */}
-                    <div className="col-span-5 flex items-center space-x-3">
-                      <div className="relative w-20 h-20 bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden">
-                        <Image
-                          src={item.image}
-                          alt={item.name}
-                          fill
-                          className="object-cover"
-                          sizes="80px"
-                        />
+                  <div key={item.id} className="py-4 sm:py-5">
+                    {/* Desktop Layout */}
+                    <div className="hidden md:grid grid-cols-12 gap-4 items-center">
+                      {/* Product Info */}
+                      <div className="col-span-5 flex items-center space-x-3">
+                        <div className="relative w-20 h-20 bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden">
+                          <Image
+                            src={item.image}
+                            alt={item.name}
+                            fill
+                            className="object-cover"
+                            sizes="80px"
+                          />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <h3 className="text-sm font-semibold text-gray-900">
+                            {item.name}
+                          </h3>
+                          <p className="text-xs text-gray-500 mt-1">
+                            {item.description}
+                          </p>
+                        </div>
                       </div>
-                      <div className="min-w-0 flex-1">
-                        <h3 className="text-sm font-semibold text-gray-900">
-                          {item.name}
-                        </h3>
-                        <p className="text-xs text-gray-500 mt-1">
-                          {item.description}
-                        </p>
+
+                      {/* Price */}
+                      <div className="col-span-2 text-center">
+                        <span className="text-sm font-bold text-gray-900">
+                          AED. {item.price.toFixed(2)}
+                        </span>
+                      </div>
+
+                      {/* Quantity Controls */}
+                      <div className="col-span-3 flex items-center justify-center space-x-2">
+                        <button
+                          onClick={() =>
+                            handleQuantityChange(item.id, item.quantity - 1)
+                          }
+                          className="w-7 h-7 rounded-full border border-red-700 flex items-center justify-center hover:bg-red-50 transition-colors cursor-pointer text-red-700"
+                          disabled={item.quantity <= 1}
+                        >
+                          <span className="text-base font-bold">−</span>
+                        </button>
+                        <span className="w-8 text-center text-sm font-bold text-gray-900">
+                          {item.quantity}
+                        </span>
+                        <button
+                          onClick={() =>
+                            handleQuantityChange(item.id, item.quantity + 1)
+                          }
+                          className="w-7 h-7 rounded-full border border-red-700 flex items-center justify-center hover:bg-red-50 transition-colors cursor-pointer text-red-700"
+                        >
+                          <span className="text-base font-bold">+</span>
+                        </button>
+                      </div>
+
+                      {/* Subtotal & Remove */}
+                      <div className="col-span-2 flex items-center justify-between">
+                        <span className="text-sm font-bold text-gray-900">
+                          AED. {item.subtotal.toFixed(2)}
+                        </span>
+                        <button
+                          onClick={() => handleRemoveItem(item.id)}
+                          className="w-6 h-6 rounded-full text-red-600 hover:bg-red-50 transition-colors flex items-center justify-center cursor-pointer"
+                        >
+                          <span className="text-xl">⊗</span>
+                        </button>
                       </div>
                     </div>
 
-                    {/* Price */}
-                    <div className="col-span-2 text-center">
-                      <span className="text-sm font-bold text-gray-900">
-                        AED. {item.price.toFixed(2)}
-                      </span>
-                    </div>
-
-                    {/* Quantity Controls */}
-                    <div className="col-span-3 flex items-center justify-center space-x-2">
-                      <button
-                        onClick={() =>
-                          handleQuantityChange(item.id, item.quantity - 1)
-                        }
-                        className="w-7 h-7 rounded-full border border-red-700 flex items-center justify-center hover:bg-red-50 transition-colors cursor-pointer text-red-700"
-                        disabled={item.quantity <= 1}
-                      >
-                        <span className="text-base font-bold">−</span>
-                      </button>
-                      <span className="w-8 text-center text-sm font-bold text-gray-900">
-                        {item.quantity}
-                      </span>
-                      <button
-                        onClick={() =>
-                          handleQuantityChange(item.id, item.quantity + 1)
-                        }
-                        className="w-7 h-7 rounded-full border border-red-700 flex items-center justify-center hover:bg-red-50 transition-colors cursor-pointer text-red-700"
-                      >
-                        <span className="text-base font-bold">+</span>
-                      </button>
-                    </div>
-
-                    {/* Subtotal & Remove */}
-                    <div className="col-span-2 flex items-center justify-between">
-                      <span className="text-sm font-bold text-gray-900">
-                        AED. {item.subtotal.toFixed(2)}
-                      </span>
-                      <button
-                        onClick={() => handleRemoveItem(item.id)}
-                        className="w-6 h-6 rounded-full text-red-600 hover:bg-red-50 transition-colors flex items-center justify-center cursor-pointer"
-                      >
-                        <span className="text-xl">⊗</span>
-                      </button>
+                    {/* Mobile Layout */}
+                    <div className="md:hidden flex flex-col space-y-3">
+                      <div className="flex items-start space-x-3">
+                        <div className="relative w-24 h-24 bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden">
+                          <Image
+                            src={item.image}
+                            alt={item.name}
+                            fill
+                            className="object-cover"
+                            sizes="96px"
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex justify-between items-start">
+                            <div className="flex-1">
+                              <h3 className="text-sm font-semibold text-gray-900">
+                                {item.name}
+                              </h3>
+                              <p className="text-xs text-gray-500 mt-1">
+                                {item.description}
+                              </p>
+                            </div>
+                            <button
+                              onClick={() => handleRemoveItem(item.id)}
+                              className="ml-2 w-6 h-6 rounded-full text-red-600 hover:bg-red-50 transition-colors flex items-center justify-center cursor-pointer"
+                            >
+                              <span className="text-xl">⊗</span>
+                            </button>
+                          </div>
+                          <div className="mt-2 text-sm font-bold text-gray-900">
+                            AED. {item.price.toFixed(2)}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                          <button
+                            onClick={() =>
+                              handleQuantityChange(item.id, item.quantity - 1)
+                            }
+                            className="w-8 h-8 rounded-full border border-red-700 flex items-center justify-center hover:bg-red-50 transition-colors cursor-pointer text-red-700"
+                            disabled={item.quantity <= 1}
+                          >
+                            <span className="text-base font-bold">−</span>
+                          </button>
+                          <span className="w-10 text-center text-sm font-bold text-gray-900">
+                            {item.quantity}
+                          </span>
+                          <button
+                            onClick={() =>
+                              handleQuantityChange(item.id, item.quantity + 1)
+                            }
+                            className="w-8 h-8 rounded-full border border-red-700 flex items-center justify-center hover:bg-red-50 transition-colors cursor-pointer text-red-700"
+                          >
+                            <span className="text-base font-bold">+</span>
+                          </button>
+                        </div>
+                        <div className="text-sm font-bold text-gray-900">
+                          Subtotal: AED. {item.subtotal.toFixed(2)}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -193,14 +279,14 @@ export default function Cart({
               {/* Action Buttons */}
               <div className="pt-6 flex flex-col sm:flex-row justify-between gap-4">
                 <button
-                  onClick={onClearCart}
-                  className="px-8 py-3 border-2 border-red-700 text-red-700 rounded-full hover:bg-red-50 transition-colors text-sm font-semibold cursor-pointer shadow"
+                  onClick={handleClearCart}
+                  className="px-6 sm:px-8 py-3 border-2 border-red-700 text-red-700 rounded-full hover:bg-red-50 transition-colors text-sm font-semibold cursor-pointer shadow"
                 >
                   Clear shopping Cart
                 </button>
                 <button
                   onClick={onContinueShopping}
-                  className="px-8 py-3 bg-red-700 text-white rounded-full hover:bg-red-800 transition-colors text-sm font-semibold cursor-pointer shadow"
+                  className="px-6 sm:px-8 py-3 bg-red-700 text-white rounded-full hover:bg-red-800 transition-colors text-sm font-semibold cursor-pointer shadow"
                 >
                   Continue shopping
                 </button>
@@ -210,8 +296,8 @@ export default function Cart({
 
           {/* Order Summary Section */}
           <div className="lg:col-span-1">
-            <div className="bg-pink-50 rounded-2xl shadow-sm p-6 sticky top-8">
-              <h2 className="text-lg font-bold text-gray-900 mb-6">
+            <div className="bg-pink-50 rounded-2xl shadow-sm p-4 sm:p-6 lg:sticky lg:top-8">
+              <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-4 sm:mb-6">
                 Orders Summary
               </h2>
 
@@ -247,11 +333,11 @@ export default function Cart({
                       placeholder="Coupon Code"
                       value={couponCode}
                       onChange={(e) => setCouponCode(e.target.value)}
-                      className="flex-1 px-4 py-2 border border-gray-300 text-sm focus:outline-none focus:border-red-700 rounded-full"
+                      className="flex-1 px-3 sm:px-4 py-2 border border-gray-300 text-sm focus:outline-none focus:border-red-700 rounded-full"
                     />
                     <button
                       onClick={handleApplyCoupon}
-                      className="px-5 py-2 bg-red-700 text-white rounded-full hover:bg-red-800 transition-colors text-sm font-semibold cursor-pointer shadow"
+                      className="px-4 sm:px-5 py-2 bg-red-700 text-white rounded-full hover:bg-red-800 transition-colors text-sm font-semibold cursor-pointer shadow"
                     >
                       Apply
                     </button>
@@ -388,11 +474,11 @@ export default function Cart({
         </div>
 
         {/* You May Also Like Section */}
-        <div className="mt-16">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">
+        <div className="mt-12 sm:mt-16 md:px-20">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-6 sm:mb-8">
             You May Also Like
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             {[
               {
                 id: 1,
@@ -425,24 +511,24 @@ export default function Cart({
             ].map((item) => (
               <div
                 key={item.id}
-                className="bg-gradient-to-r from-red-200 to-red-700 rounded-full p-6 flex items-center justify-between shadow hover:shadow-lg transition-shadow cursor-pointer border border-gray-200"
+                className="bg-gradient-to-r from-red-200 to-red-700 rounded-3xl p-4 sm:p-6 flex items-center justify-between shadow hover:shadow-lg transition-shadow cursor-pointer border border-gray-200"
               >
-                <div className="flex items-center gap-4">
-                  <div className="relative w-20 h-20 bg-white rounded-2xl overflow-hidden">
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-2xl overflow-hidden flex-shrink-0">
                     <Image
                       src={item.image}
                       alt={item.name}
                       fill
                       className="object-cover"
-                      sizes="80px"
+                      sizes="(max-width: 640px) 64px, 80px"
                     />
                   </div>
-                  <span className="text-white font-semibold text-xl">
+                  <span className="text-white font-semibold text-base sm:text-xl">
                     {item.name}
                   </span>
                 </div>
-                <span className="text-white font-bold text-2xl">
-                  AED{item.price.toFixed(2)}
+                <span className="text-white font-bold text-lg sm:text-2xl whitespace-nowrap ml-2">
+                  AED{item.price.toFixed(0)}
                 </span>
               </div>
             ))}
