@@ -11,6 +11,7 @@ import SearchBar from "@/components/Common/SearchBar";
 import ExpandableSearchBar from "@/components/Common/ExpandableSearchBar";
 import UserMenu from "@/components/Common/UserMenu";
 import ShoppingCartComponent from "@/components/Common/ShoppingCart";
+import AuthModal from "@/components/Common/AuthModal";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
@@ -22,6 +23,10 @@ const Navbar = () => {
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [authModalMode, setAuthModalMode] = useState<"login" | "signup">(
+    "login"
+  );
   const menuRef = useRef<HTMLDivElement>(null);
   const langRef = useRef<HTMLDivElement>(null);
   const userRef = useRef<HTMLDivElement>(null);
@@ -66,10 +71,14 @@ const Navbar = () => {
     setIsUserMenuOpen(false);
   };
 
-  const handleLogin = () => {
-    console.log("Login clicked");
-    // Add your login logic here
-    // For example: router.push('/login');
+  const handleOpenAuthModal = (mode: "login" | "signup") => {
+    setAuthModalMode(mode);
+    setIsAuthModalOpen(true);
+    setIsUserMenuOpen(false);
+  };
+
+  const handleCloseAuthModal = () => {
+    setIsAuthModalOpen(false);
   };
 
   const handleLogout = () => {
@@ -97,6 +106,9 @@ const Navbar = () => {
       }
       if (event.key === "Escape" && isUserMenuOpen) {
         setIsUserMenuOpen(false);
+      }
+      if (event.key === "Escape" && isAuthModalOpen) {
+        setIsAuthModalOpen(false);
       }
       if (event.key === "Escape" && isCartOpen) {
         dispatch(closeCart());
@@ -167,6 +179,7 @@ const Navbar = () => {
     isLangDropdownOpen,
     isSearchOpen,
     isUserMenuOpen,
+    isAuthModalOpen,
     isCartOpen,
     dispatch,
   ]);
@@ -418,7 +431,7 @@ const Navbar = () => {
                 isLoggedIn={false} // Change this based on your auth state
                 userName="John Doe"
                 userEmail="john@example.com"
-                onLogin={handleLogin}
+                onOpenAuthModal={handleOpenAuthModal}
                 onLogout={handleLogout}
               />
             </div>
@@ -699,7 +712,7 @@ const Navbar = () => {
           isLoggedIn={false} // Change this based on your auth state
           userName="John Doe"
           userEmail="john@example.com"
-          onLogin={handleLogin}
+          onOpenAuthModal={handleOpenAuthModal}
           onLogout={handleLogout}
         />
       </div>
@@ -708,6 +721,13 @@ const Navbar = () => {
       <div className="xl:hidden">
         <ShoppingCartComponent />
       </div>
+
+      {/* Auth Modal */}
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={handleCloseAuthModal}
+        initialMode={authModalMode}
+      />
     </nav>
   );
 };
