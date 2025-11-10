@@ -15,7 +15,7 @@ const Subscribe = () => {
   };
 
   return (
-    <div className="w-full bg-sky-700 py-8 my-20 px-4 sm:px-6 lg:px-8">
+    <div className="w-full bg-gradient-to-r from-red-700 to-red-700/20 py-8 my-20 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-20">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
           {/* Left Side - Icon and Text */}
@@ -56,11 +56,11 @@ const Subscribe = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your Email"
                 required
-                className="flex-1 px-4 py-3 rounded-full border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 min-w-[250px] bg-gray-100"
+                className="flex-1 px-4 py-3 rounded-full border-0 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-400 min-w-[250px] bg-gray-100"
               />
               <button
                 type="submit"
-                className="px-8 py-3 bg-sky-400 hover:bg-sky-500 text-white font-semibold rounded-full transition-colors duration-300 whitespace-nowrap cursor-pointer"
+                className="px-8 py-3 bg-red-700 hover:bg-red-800 text-white font-semibold rounded-full transition-colors duration-300 whitespace-nowrap cursor-pointer"
               >
                 Subscribe
               </button>

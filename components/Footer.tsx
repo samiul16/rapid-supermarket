@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="bg-sky-500 text-white py-12">
+    <footer className="bg-[#630700] text-white py-12 rounded-tl-[60px] rounded-tr-[60px]">
       <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-20 pt-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Logo and Company Info */}
@@ -15,14 +15,14 @@ const Footer = () => {
               <Image
                 src="/brand-logo.png"
                 alt="Alburaq"
-                width={120}
+                width={80}
                 height={40}
-                className="mb-4 rounded-lg shadow-lg"
+                className="mb-4"
               />
             </div>
-            <p className="text-sm text-gray-100 mb-6">
-              Alburaq is your go-to destination for quality products at
-              unbeatable prices.
+            <p className="text-sm text-gray-300 mb-6">
+              Excellency Catering Restaurant Serves Sweets perfectly,
+              complementing tender cuts of meat to.
             </p>
 
             {/* Social Media Icons */}
@@ -32,10 +32,10 @@ const Footer = () => {
                 href="https://x.com/home"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-shrink-0 w-8 h-8 min-w-[2rem] min-h-[2rem] border-2 border-sky-300 rounded-full flex items-center justify-center hover:bg-sky-400 hover:bg-opacity-20 transition-all aspect-square"
+                className="flex-shrink-0 w-8 h-8 min-w-[2rem] min-h-[2rem] border-2 border-red-300 rounded-full flex items-center justify-center hover:bg-red-700 hover:bg-opacity-20 transition-all aspect-square"
               >
                 <svg
-                  className="w-3 h-3 text-sky-200 flex-shrink-0"
+                  className="w-3 h-3 text-red-200 flex-shrink-0"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -48,7 +48,7 @@ const Footer = () => {
                 href="https://www.facebook.com/Alburaqemb/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-shrink-0 w-8 h-8 min-w-[2rem] min-h-[2rem] bg-sky-400 rounded-full flex items-center justify-center hover:bg-sky-400 transition-colors aspect-square"
+                className="flex-shrink-0 w-8 h-8 min-w-[2rem] min-h-[2rem] bg-red-700 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors aspect-square"
               >
                 <svg
                   className="w-4 h-4 text-white flex-shrink-0"
@@ -64,10 +64,10 @@ const Footer = () => {
                 href="https://www.youtube.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-shrink-0 w-8 h-8 min-w-[2rem] min-h-[2rem] border-2 border-sky-400 rounded-full flex items-center justify-center hover:bg-sky-400 hover:bg-opacity-20 transition-all aspect-square"
+                className="flex-shrink-0 w-8 h-8 min-w-[2rem] min-h-[2rem] border-2 border-red-400 rounded-full flex items-center justify-center hover:bg-red-700 hover:bg-opacity-20 transition-all aspect-square"
               >
                 <svg
-                  className="w-4 h-4 text-sky-200 flex-shrink-0"
+                  className="w-4 h-4 text-red-200 flex-shrink-0"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -80,10 +80,10 @@ const Footer = () => {
                 href="https://www.instagram.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-shrink-0 w-8 h-8 min-w-[2rem] min-h-[2rem] border-2 border-sky-400 rounded-full flex items-center justify-center hover:bg-sky-400 hover:bg-opacity-20 transition-all aspect-square"
+                className="flex-shrink-0 w-8 h-8 min-w-[2rem] min-h-[2rem] border-2 border-red-400 rounded-full flex items-center justify-center hover:bg-red-700 hover:bg-opacity-20 transition-all aspect-square"
               >
                 <svg
-                  className="w-3 h-3 text-sky-200 flex-shrink-0"
+                  className="w-3 h-3 text-red-200 flex-shrink-0"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -93,71 +93,40 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Help & Support Section */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Help & Support</h3>
-            <ul className="space-y-4">
-              <li>
-                <Link
-                  href="/help-support"
-                  className="text-sm text-gray-100 hover:text-white transition-colors"
-                >
-                  Shipping Info
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/help-support"
-                  className="text-sm text-gray-100 hover:text-white transition-colors"
-                >
-                  Returns
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/help-support"
-                  className="text-sm text-gray-100 hover:text-white transition-colors"
-                >
-                  How to Order
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/help-support"
-                  className="text-sm text-gray-100 hover:text-white transition-colors"
-                >
-                  How to confirm
-                </Link>
-              </li>
-            </ul>
-          </div>
-
           {/* Company Info Section */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Company Info</h3>
-            <ul className="space-y-4">
+            <h3 className="text-lg font-semibold mb-4">COMPANY INFO</h3>
+            <ul className="space-y-2">
               <li>
                 <Link
                   href="/about"
-                  className="text-sm text-gray-100 hover:text-white transition-colors"
-                >
-                  About Us
-                </Link>
-              </li>
-              {/* <li>
-                <Link
-                  href="#"
                   className="text-sm text-gray-300 hover:text-white transition-colors"
                 >
-                  Our Blog
+                  Profile
                 </Link>
-              </li> */}
+              </li>
+              <li>
+                <Link
+                  href="/blog"
+                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                >
+                  Blog
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/career"
-                  className="text-sm text-gray-100 hover:text-white transition-colors"
+                  className="text-sm text-gray-300 hover:text-white transition-colors"
                 >
                   Careers
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/testimonial"
+                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                >
+                  Testimonial
                 </Link>
               </li>
               <li>
@@ -165,17 +134,9 @@ const Footer = () => {
                   href="https://www.google.com/maps/search/?api=1&query=Al+Rashidiya+1+Ajman+United+Arab+Emirates"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-gray-100 hover:text-white transition-colors"
+                  className="text-sm text-gray-300 hover:text-white transition-colors"
                 >
-                  Store Location
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/help-support"
-                  className="text-sm text-gray-100 hover:text-white transition-colors"
-                >
-                  How to Track
+                  Location
                 </Link>
               </li>
             </ul>
@@ -183,28 +144,36 @@ const Footer = () => {
 
           {/* Customer Care Section */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Customer Care</h3>
-            <ul className="space-y-4">
+            <h3 className="text-lg font-semibold mb-4">CUSTOMER CARE</h3>
+            <ul className="space-y-2">
               <li>
                 <Link
                   href="/faq"
-                  className="text-sm text-gray-100 hover:text-white transition-colors"
+                  className="text-sm text-gray-300 hover:text-white transition-colors"
                 >
-                  FAQ
+                  FAQ&apos;s
                 </Link>
               </li>
               <li>
                 <Link
                   href="/terms-policy"
-                  className="text-sm text-gray-100 hover:text-white transition-colors"
+                  className="text-sm text-gray-300 hover:text-white transition-colors"
                 >
-                  Terms & Policy
+                  Terms of Services
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/privacy-policy"
+                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                >
+                  Privacy Policy
                 </Link>
               </li>
               <li>
                 <Link
                   href="/contact"
-                  className="text-sm text-gray-100 hover:text-white transition-colors"
+                  className="text-sm text-gray-300 hover:text-white transition-colors"
                 >
                   Contact Us
                 </Link>
@@ -212,7 +181,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="/gift-card"
-                  className="text-sm text-gray-100 hover:text-white transition-colors"
+                  className="text-sm text-gray-300 hover:text-white transition-colors"
                 >
                   Gift Card
                 </Link>
@@ -220,63 +189,130 @@ const Footer = () => {
             </ul>
           </div>
 
+          {/* Help & Support Section */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">HELP & SUPPORT</h3>
+            <ul className="space-y-4">
+              <li>
+                <Link
+                  href="/help-support"
+                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                >
+                  Delivery Info
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/help-support"
+                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                >
+                  Refund Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/help-support"
+                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                >
+                  How to order
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/help-support"
+                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                >
+                  How to track Us
+                </Link>
+              </li>
+            </ul>
+          </div>
+
           {/* Contact Section */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact</h3>
-            <div className="space-y-7">
-              <div className="flex items-start space-x-2">
+            <h3 className="text-lg font-semibold mb-4">CONTACT</h3>
+            <div className="space-y-4">
+              <div className="flex items-center space-x-3">
                 <svg
-                  className="w-6 h-6 mt-1 text-sky-200"
-                  fill="currentColor"
+                  className="w-6 h-6 text-red-200 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
                   viewBox="0 0 24 24"
                 >
-                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                  <path d="M8 12a1 1 0 100-2 1 1 0 000 2zm4 0a1 1 0 100-2 1 1 0 000 2zm4 0a1 1 0 100-2 1 1 0 000 2z" />
+                  <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.546 20.2A1 1 0 003.8 21.454l3.032-.892A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" />
                 </svg>
-                <p className="text-sm text-gray-100">
-                  Al Rashidiya 1 - Ajman - United Arab Emirates
+                <p className="text-sm text-gray-300">058 201 5468</p>
+              </div>
+
+              <div className="flex items-center space-x-3">
+                <svg
+                  className="w-6 h-6 text-red-200 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <path d="M3 7l9 6 9-6" />
+                </svg>
+                <p className="text-sm text-gray-300">
+                  info@mizanursupermarket.com
                 </p>
               </div>
 
-              <div className="flex items-center space-x-2">
+              <div className="flex items-start space-x-3">
                 <svg
-                  className="w-6 h-6 text-sky-200"
-                  fill="currentColor"
+                  className="w-6 h-6 text-red-200 flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
                   viewBox="0 0 24 24"
                 >
-                  <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+                  <circle cx="12" cy="9" r="2.5" />
                 </svg>
-                <p className="text-sm text-gray-100">+971 54 324 7559</p>
-              </div>
-
-              <div className="flex items-center space-x-2">
-                <svg
-                  className="w-6 h-6 text-sky-200"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-                </svg>
-                <p className="text-sm text-gray-100">marium.marufa@gmail.com</p>
+                <p className="text-sm text-gray-300">
+                  Al Rashidiya 1 - Ajman - United Arab Emirates
+                </p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t-2 border-sky-400 mt-8 pt-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t border-red-200 mt-8 pt-6">
+          <div className="flex flex-col md:flex-row justify-between items-center relative">
+            {/* Scroll to Top Button - Bottom Left */}
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="absolute -top-16 -left-12 w-10 h-10 bg-red-700 hover:bg-red-800 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 cursor-pointer"
+              aria-label="Scroll to top"
+            >
+              <svg
+                className="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                viewBox="0 0 24 24"
+              >
+                <path d="M5 15l7-7 7 7" />
+              </svg>
+            </button>
+
             <div className="flex items-center space-x-4 mb-4 md:mb-0">
-              <p className="text-sm text-gray-100">
-                © 2025 Alburaq. All Rights Reserved.
+              <p className="text-sm text-gray-300">
+                Developed by{" "}
+                <span className="text-white font-semibold">Rapid</span>
               </p>
             </div>
 
-            <Link
-              href="#"
-              className="text-sm text-gray-100 hover:text-white underline transition-colors"
-            >
-              Download Our App
-            </Link>
+            <div className="flex items-center space-x-4 mb-4 md:mb-0">
+              <p className="text-sm text-gray-300">
+                Copyright © MizanurSuperMarket. All Rights Reserved
+              </p>
+            </div>
 
             {/* Payment Methods */}
             <div className="flex items-center space-x-2">

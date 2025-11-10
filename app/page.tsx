@@ -18,6 +18,10 @@ import TopCategories from "@/components/TopCategories";
 import BannerSection from "@/components/BannerSection";
 import PopularProducts from "@/components/PopularProducts";
 import Testimonial from "@/components/Testimonial";
+import Wishes from "@/components/Wishes";
+import Deliver from "@/components/Deliver";
+import Experience from "@/components/Experience";
+import OurBlog from "@/components/OurBlog";
 
 export default function Home() {
   useEffect(() => {
@@ -39,6 +43,9 @@ export default function Home() {
           <div data-aos="fade-up" data-aos-delay="100">
             <TopCategories />
           </div>
+          <div data-aos="fade-up" data-aos-delay="100">
+            <Wishes />
+          </div>
           <div data-aos="fade-up" data-aos-delay="200">
             <BannerSection />
           </div>
@@ -48,30 +55,27 @@ export default function Home() {
           <div data-aos="fade-up" data-aos-delay="100">
             <TopSelling />
           </div>
+          <div data-aos="fade-up" data-aos-delay="100">
+            <Deliver />
+          </div>
           <div data-aos="fade-up" data-aos-delay="200">
             <PopularProducts />
           </div>
           <div data-aos="fade-up" data-aos-delay="200">
-            <Testimonial />
-          </div>
-          {/* <div data-aos="fade-up" data-aos-delay="100">
-            <FlashSale />
+            <Experience />
           </div>
           <div data-aos="fade-up" data-aos-delay="200">
-            <ClientTestimonials />
+            <Testimonial />
           </div>
-          <div data-aos="fade-up" data-aos-delay="100">
-            <TwoCard />
+          <div data-aos="fade-up" data-aos-delay="200">
+            <OurBlog />
           </div>
           <div data-aos="fade-up" data-aos-delay="200">
             <Subscribe />
           </div>
-          <div data-aos="fade-up" data-aos-delay="100">
+          <div data-aos="fade-up" data-aos-delay="200">
             <DownloadOurApp />
           </div>
-          <div data-aos="fade-up" data-aos-delay="200">
-            <Stats />
-          </div> */}
         </div>
       </main>
     </div>
