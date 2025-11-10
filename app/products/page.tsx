@@ -1,7 +1,16 @@
 "use client";
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, ChevronDown, Eye, Heart, Plus, Minus } from "lucide-react";
+import {
+  Search,
+  ChevronDown,
+  Eye,
+  Heart,
+  Plus,
+  Minus,
+  Grid3x3,
+  List,
+} from "lucide-react";
 import CommonHeader from "@/components/Common/CommonHeader";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -30,6 +39,7 @@ const Products = () => {
     url: string;
     name: string;
   } | null>(null);
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
   const categories = [
     { name: "Fish", count: 2 },
@@ -471,77 +481,229 @@ const Products = () => {
 
             {/* Products Grid */}
             <div className="lg:col-span-3">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {filteredProducts.map((product) => (
-                  <motion.div
-                    key={product.id}
-                    whileHover={{ y: -4 }}
-                    className={`bg-white rounded-3xl shadow-lg overflow-hidden ${
-                      product.isFeatured ? "" : ""
+              {/* View Toggle */}
+              <div className="flex justify-end mb-6">
+                <div className="flex gap-2 bg-white rounded-full p-1 shadow-sm border border-red-200">
+                  <button
+                    onClick={() => setViewMode("grid")}
+                    className={`p-2 rounded-full cursor-pointer transition-colors ${
+                      viewMode === "grid"
+                        ? "bg-red-800 text-white"
+                        : "text-gray-600 hover:bg-gray-100"
                     }`}
                   >
-                    {/* Product Image */}
-                    <div className="relative aspect-square bg-gray-50">
-                      <Image
-                        fill
-                        src={product.image}
-                        alt={product.name}
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                      {/* Action Icons */}
-                      <div className="absolute top-4 right-4 flex flex-col gap-3">
-                        <button
-                          onClick={() =>
-                            setPreviewImage({
-                              url: product.image,
-                              name: product.name,
-                            })
-                          }
-                          className="w-12 h-12 bg-red-50 rounded-full shadow-md flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer"
-                        >
-                          <Eye className="w-5 h-5 text-red-600" />
-                        </button>
-                        <button className="w-12 h-12 bg-red-50 rounded-full shadow-md flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer">
-                          <Heart className="w-5 h-5 text-red-600" />
-                        </button>
-                      </div>
-                    </div>
+                    <Grid3x3 className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={() => setViewMode("list")}
+                    className={`p-2 rounded-full cursor-pointer transition-colors ${
+                      viewMode === "list"
+                        ? "bg-red-800 text-white"
+                        : "text-gray-600 hover:bg-gray-100"
+                    }`}
+                  >
+                    <List className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
 
-                    {/* Product Details */}
-                    <div className="p-5 space-y-2">
-                      {/* Title and Price Row */}
-                      <div className="flex items-center justify-between mb-1">
-                        <h3 className="text-gray-900 font-bold text-base whitespace-nowrap">
-                          {product.name}
-                        </h3>
-                        <p className="text-red-600 font-bold text-[15px] whitespace-nowrap">
-                          {product.priceText}
+              <div
+                className={
+                  viewMode === "grid"
+                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+                    : "flex flex-col gap-4"
+                }
+              >
+                {filteredProducts.map((product) =>
+                  viewMode === "grid" ? (
+                    <motion.div
+                      key={product.id}
+                      whileHover={{ y: -4 }}
+                      className={`bg-white rounded-3xl shadow-lg overflow-hidden ${
+                        product.isFeatured ? "" : ""
+                      }`}
+                    >
+                      {/* Product Image */}
+                      <div
+                        className="relative aspect-square bg-gray-50 cursor-pointer"
+                        onClick={() => router.push(`/products/${product.id}`)}
+                      >
+                        <Image
+                          fill
+                          src={product.image}
+                          alt={product.name}
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                        {/* Action Icons */}
+                        <div className="absolute top-4 right-4 flex flex-col gap-3">
+                          <button
+                            onClick={() =>
+                              setPreviewImage({
+                                url: product.image,
+                                name: product.name,
+                              })
+                            }
+                            className="w-12 h-12 bg-red-50 rounded-full shadow-md flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer"
+                          >
+                            <Eye className="w-5 h-5 text-red-600" />
+                          </button>
+                          <button className="w-12 h-12 bg-red-50 rounded-full shadow-md flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer">
+                            <Heart className="w-5 h-5 text-red-600" />
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Product Details */}
+                      <div className="p-5 space-y-2">
+                        {/* Title and Price Row */}
+                        <div className="flex items-center justify-between mb-1">
+                          <h3
+                            className="text-gray-900 font-bold text-base whitespace-nowrap cursor-pointer hover:text-red-700 transition-colors"
+                            onClick={() =>
+                              router.push(`/products/${product.id}`)
+                            }
+                          >
+                            {product.name}
+                          </h3>
+                          <p className="text-red-600 font-bold text-[15px] whitespace-nowrap">
+                            {product.priceText}
+                          </p>
+                        </div>
+
+                        {/* Description */}
+                        <p className="text-gray-500 text-base mb-3">
+                          {product.description}
                         </p>
+
+                        {/* Star Rating and Quantity Controls */}
+                        <div className="flex items-center justify-between mb-6">
+                          {/* Star Rating */}
+                          <div className="flex items-center gap-0.5">
+                            {[...Array(5)].map((_, i) => (
+                              <svg
+                                key={i}
+                                className={`w-6 h-6 ${
+                                  i < product.rating
+                                    ? "text-orange-400 fill-current"
+                                    : "text-gray-300 fill-current"
+                                }`}
+                                viewBox="0 0 20 20"
+                              >
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                              </svg>
+                            ))}
+                          </div>
+
+                          {/* Quantity Controls */}
+                          <div className="flex items-center gap-2 bg-gray-50 rounded-lg px-2 py-1">
+                            <button
+                              onClick={() => updateQuantity(product.id, -1)}
+                              className="text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
+                            >
+                              <Minus className="w-5 h-5" />
+                            </button>
+                            <span className="text-xl font-bold w-8 text-center text-gray-900">
+                              {getQuantity(product.id)}
+                            </span>
+                            <button
+                              onClick={() => updateQuantity(product.id, 1)}
+                              className="text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
+                            >
+                              <Plus className="w-5 h-5" />
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Add to Cart Button */}
+                        <button
+                          onClick={() => {
+                            const productData = {
+                              id: product.id,
+                              name: product.name,
+                              price: product.price,
+                              image: product.image,
+                              image_url: product.image,
+                              priceText: product.priceText,
+                              rating: product.rating,
+                              description: product.description,
+                              category: product.category,
+                              isFeatured: product.isFeatured,
+                            };
+                            addToCartGlobal(
+                              productData,
+                              product.id,
+                              getQuantity(product.id),
+                              () => {}
+                            );
+                          }}
+                          className="w-full py-3 bg-red-800 text-white text-lg font-bold rounded-full hover:bg-red-800 transition-colors cursor-pointer focus:outline-none shadow"
+                        >
+                          Add To Card
+                        </button>
+                      </div>
+                    </motion.div>
+                  ) : (
+                    /* List View */
+                    <motion.div
+                      key={product.id}
+                      whileHover={{ x: 4 }}
+                      className="bg-white rounded-2xl shadow-md overflow-hidden flex items-center p-4 gap-4"
+                    >
+                      {/* Product Image */}
+                      <div
+                        className="relative w-24 h-24 flex-shrink-0 bg-gray-50 rounded-xl overflow-hidden cursor-pointer"
+                        onClick={() => router.push(`/products/${product.id}`)}
+                      >
+                        <Image
+                          fill
+                          src={product.image}
+                          alt={product.name}
+                          className="object-cover"
+                          sizes="96px"
+                        />
                       </div>
 
-                      {/* Description */}
-                      <p className="text-gray-500 text-base mb-3">
-                        {product.description}
-                      </p>
+                      {/* Product Info */}
+                      <div className="flex-1 flex items-center justify-between gap-4">
+                        <div className="flex-1">
+                          <h3
+                            className="text-gray-900 font-bold text-lg mb-1 cursor-pointer hover:text-red-700 transition-colors"
+                            onClick={() =>
+                              router.push(`/products/${product.id}`)
+                            }
+                          >
+                            {product.name}
+                          </h3>
+                          <p className="text-gray-400 text-sm mb-2">
+                            {product.description}
+                          </p>
+                          {/* Star Rating */}
+                          <div className="flex items-center gap-0.5">
+                            {[...Array(5)].map((_, i) => (
+                              <svg
+                                key={i}
+                                className={`w-5 h-5 ${
+                                  i < product.rating
+                                    ? "text-orange-400 fill-current"
+                                    : "text-gray-300 fill-current"
+                                }`}
+                                viewBox="0 0 20 20"
+                              >
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                              </svg>
+                            ))}
+                            <span className="text-sm text-gray-500 ml-2">
+                              {product.rating}
+                            </span>
+                          </div>
+                        </div>
 
-                      {/* Star Rating and Quantity Controls */}
-                      <div className="flex items-center justify-between mb-6">
-                        {/* Star Rating */}
-                        <div className="flex items-center gap-0.5">
-                          {[...Array(5)].map((_, i) => (
-                            <svg
-                              key={i}
-                              className={`w-6 h-6 ${
-                                i < product.rating
-                                  ? "text-orange-400 fill-current"
-                                  : "text-gray-300 fill-current"
-                              }`}
-                              viewBox="0 0 20 20"
-                            >
-                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                          ))}
+                        {/* Price */}
+                        <div className="text-center">
+                          <p className="text-red-600 font-bold text-lg mb-2">
+                            {product.priceText}
+                          </p>
                         </div>
 
                         {/* Quantity Controls */}
@@ -562,37 +724,53 @@ const Products = () => {
                             <Plus className="w-5 h-5" />
                           </button>
                         </div>
-                      </div>
 
-                      {/* Add to Cart Button */}
-                      <button
-                        onClick={() => {
-                          const productData = {
-                            id: product.id,
-                            name: product.name,
-                            price: product.price,
-                            image: product.image,
-                            image_url: product.image,
-                            priceText: product.priceText,
-                            rating: product.rating,
-                            description: product.description,
-                            category: product.category,
-                            isFeatured: product.isFeatured,
-                          };
-                          addToCartGlobal(
-                            productData,
-                            product.id,
-                            getQuantity(product.id),
-                            () => {}
-                          );
-                        }}
-                        className="w-full py-3 bg-red-800 text-white text-lg font-bold rounded-full hover:bg-red-800 transition-colors cursor-pointer focus:outline-none shadow"
-                      >
-                        Add To Card
-                      </button>
-                    </div>
-                  </motion.div>
-                ))}
+                        {/* Action Buttons */}
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() =>
+                              setPreviewImage({
+                                url: product.image,
+                                name: product.name,
+                              })
+                            }
+                            className="w-12 h-12 bg-red-50 rounded-full shadow flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer"
+                          >
+                            <Eye className="w-5 h-5 text-red-600" />
+                          </button>
+                          <button className="w-12 h-12 bg-red-50 rounded-full shadow flex items-center justify-center hover:bg-red-100 transition-colors cursor-pointer">
+                            <Heart className="w-5 h-5 text-red-600" />
+                          </button>
+                          <button
+                            onClick={() => {
+                              const productData = {
+                                id: product.id,
+                                name: product.name,
+                                price: product.price,
+                                image: product.image,
+                                image_url: product.image,
+                                priceText: product.priceText,
+                                rating: product.rating,
+                                description: product.description,
+                                category: product.category,
+                                isFeatured: product.isFeatured,
+                              };
+                              addToCartGlobal(
+                                productData,
+                                product.id,
+                                getQuantity(product.id),
+                                () => {}
+                              );
+                            }}
+                            className="w-12 h-12 bg-red-700 rounded-full shadow flex items-center justify-center hover:bg-red-800 transition-colors cursor-pointer"
+                          >
+                            <Plus className="w-5 h-5 text-white" />
+                          </button>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )
+                )}
               </div>
             </div>
           </div>
