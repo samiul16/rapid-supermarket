@@ -127,7 +127,7 @@ const TopCategories = () => {
                 transition: { type: "spring", stiffness: 300, damping: 20 },
               }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => handleCategoryClick(category.id)}
+              // onClick={() => handleCategoryClick(category.id)}
               className="w-full max-w-[180px] inline-flex flex-col justify-start items-center gap-3.5 cursor-pointer group"
             >
               {/* Image Container with Gradient Border Effect */}
