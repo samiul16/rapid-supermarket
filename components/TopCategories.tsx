@@ -94,7 +94,7 @@ const TopCategories = () => {
   };
 
   const handleCategoryClick = (categoryId: number) => {
-    router.push(`/category/${categoryId}`);
+    router.push(`/products/${categoryId}`);
   };
 
   return (
