@@ -190,9 +190,11 @@ const Blogs = () => {
                     onClick={() => handleBlogClick(post.id)}
                   >
                     <div className="relative overflow-hidden">
-                      <img
+                      <Image
                         src={post.image}
                         alt={post.title}
+                        width={400}
+                        height={256}
                         className="w-full h-48 sm:h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                       <div className="absolute top-4 left-4">
@@ -266,7 +268,7 @@ const Blogs = () => {
                     placeholder="Search articles..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full px-4 py-3 pr-12 border border-gray-200 rounded-full text-gray-700 focus:outline-none focus:border-red-700 focus:ring-2 focus:ring-red-700/20 transition-all duration-300"
+                    className="w-full px-4 py-3 pr-12 border border-gray-200 rounded-full text-gray-700 focus:outline-none focus:border-red-700 focus:ring-2 focus:ring-red-700/20 transition-all duration-300 bg-gray-50"
                   />
                   <motion.button
                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-red-700 transition-colors duration-300"
@@ -335,9 +337,11 @@ const Blogs = () => {
                       transition={{ duration: 0.2 }}
                       onClick={() => handleBlogClick(post.id)}
                     >
-                      <img
+                      <Image
                         src={post.image}
                         alt={post.title}
+                        width={64}
+                        height={64}
                         className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
                       />
                       <div className="flex-1">
@@ -365,10 +369,10 @@ const Blogs = () => {
                   <input
                     type="email"
                     placeholder="Your email address"
-                    className="w-full px-4 py-3 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-white/50"
+                    className="w-full px-4 py-3 rounded-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-white/50 bg-gray-100 shadow"
                   />
                   <motion.button
-                    className="w-full py-3 bg-white text-red-700 rounded-lg font-semibold hover:bg-red-50 transition-colors duration-300"
+                    className="w-full py-3 bg-white text-red-700 rounded-full font-semibold hover:bg-red-50 transition-colors duration-300 cursor-pointer"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
