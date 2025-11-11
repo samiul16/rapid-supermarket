@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import CommonHeader from "@/components/Common/CommonHeader";
 
 const BlogDetail = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const router = useRouter();
 
   const recentPosts = [
     {
@@ -120,9 +122,11 @@ const BlogDetail = () => {
                 className="relative mb-8 lg:mb-12"
                 variants={fadeInUp}
               >
-                <img
+                <Image
                   src="/blogs/supermarket-blog-4.jpg"
                   alt="How to Save Time & Shop Smarter"
+                  width={800}
+                  height={535}
                   className="w-full h-64 sm:h-80 lg:h-[535px] object-cover rounded-2xl shadow-lg"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl" />
@@ -333,7 +337,7 @@ const BlogDetail = () => {
                     placeholder="Search articles..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full px-4 py-3 pr-12 border border-gray-200 rounded-full text-gray-700 focus:outline-none focus:border-red-700 focus:ring-2 focus:ring-red-700/20 transition-all duration-300"
+                    className="w-full px-4 py-3 pr-12 border border-gray-200 rounded-full text-gray-700 focus:outline-none focus:border-red-700 focus:ring-2 focus:ring-red-700/20 transition-all duration-300 bg-gray-50"
                   />
                   <motion.button
                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-red-700 transition-colors duration-300"
@@ -375,9 +379,11 @@ const BlogDetail = () => {
                       whileHover={{ x: 5 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <img
+                      <Image
                         src={post.image}
                         alt={post.title}
+                        width={64}
+                        height={64}
                         className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
                       />
                       <div className="flex-1">
@@ -404,10 +410,10 @@ const BlogDetail = () => {
                   <input
                     type="email"
                     placeholder="Your email"
-                    className="w-full px-4 py-3 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-white/50"
+                    className="w-full px-4 py-3 rounded-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-white/50 bg-gray-50"
                   />
                   <motion.button
-                    className="w-full py-3 bg-white text-red-700 rounded-lg font-semibold hover:bg-red-50 transition-colors duration-300"
+                    className="w-full py-3 bg-white text-red-700 rounded-full font-semibold hover:bg-red-50 transition-colors duration-300"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -449,9 +455,11 @@ const BlogDetail = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <div className="relative overflow-hidden">
-                    <img
+                    <Image
                       src={post.image}
                       alt={post.title}
+                      width={400}
+                      height={224}
                       className="w-full h-48 sm:h-56 object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                   </div>
@@ -471,9 +479,10 @@ const BlogDetail = () => {
                     </p>
 
                     <motion.button
-                      className="px-6 py-2 border border-red-700 text-red-700 rounded-full font-semibold text-sm hover:bg-red-700 hover:text-white transition-all duration-300"
+                      className="px-6 py-2 border border-red-700 text-red-700 rounded-full font-semibold text-sm hover:bg-red-700 hover:text-white transition-all duration-300 cursor-pointer"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
+                      onClick={() => router.push("/blogs")}
                     >
                       Read More
                     </motion.button>
