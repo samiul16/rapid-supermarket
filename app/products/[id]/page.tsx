@@ -119,7 +119,7 @@ const ProductPage = () => {
           <div className="flex flex-col xl:flex-row justify-center items-start gap-8 md:gap-12 lg:gap-10">
             {/* Product Images */}
             <motion.div
-              className="w-full xl:w-[632px] 2xl:w-[700px] flex flex-col gap-4 md:gap-5"
+              className="w-full flex flex-col gap-4 md:gap-5"
               variants={fadeInLeft}
             >
               <motion.img
