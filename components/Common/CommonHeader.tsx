@@ -13,11 +13,13 @@ interface CommonHeaderProps {
   heroTitle?: string;
   heroDescription?: string;
   className?: string;
+  breadcrumbs?: BreadcrumbItem[];
 }
 
 export default function CommonHeader({
   heroImage = "/default-hero.jpg",
   heroTitle,
+  breadcrumbs,
   heroDescription,
   className = "",
 }: CommonHeaderProps) {

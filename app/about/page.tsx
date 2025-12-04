@@ -1,15 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import CommonHeader from "@/components/Common/CommonHeader";
-import DownloadOurApp from "@/components/DownloadOurApp";
 import Deliver from "@/components/Deliver";
 import Subscribe from "@/components/Subscribe";
 
 export default function AboutPage() {
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [, setActiveImageIndex] = useState(0);
 
   const stats = [
     { number: "25+", label: "Sales Outlets" },
