@@ -17,18 +17,18 @@ const TopCategories = () => {
   const categories: Category[] = [
     {
       id: 1,
-      name: "Vegetable",
-      image: "/top-categories/supermarket-top-categories-1.png",
+      name: "Daily Essentials",
+      image: "/top-categories/Daily Essentials.png",
     },
     {
       id: 2,
-      name: "Fish",
-      image: "/top-categories/supermarket-top-categories-2.png",
+      name: "Drinks",
+      image: "/top-categories/Drinks.png",
     },
     {
       id: 3,
-      name: "Eggs",
-      image: "/top-categories/supermarket-top-categories-3.png",
+      name: "Snacks",
+      image: "/top-categories/Snacks.png",
     },
     {
       id: 4,
@@ -37,8 +37,8 @@ const TopCategories = () => {
     },
     {
       id: 5,
-      name: "Milk",
-      image: "/top-categories/supermarket-top-categories-5.png",
+      name: "Vegetables & Fruits",
+      image: "/top-categories/Vegetables-Fruits.png",
     },
     {
       id: 6,

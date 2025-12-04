@@ -8,26 +8,26 @@ const OurBlog = () => {
   const blogPosts = [
     {
       id: 1,
-      title: "Top 5 Healthy Burgers You Can Make at Home",
+      title: "5 Easy & Healthy Salad Recipes",
       date: "05-06-2025",
       description:
-        "Make your special day truly unforgettable with our personalized Water Lantern",
-      image: "/blog/1.png",
+        "Fresh and simple salad ideas using seasonal vegetables and fruits for a quick and nutritious meal.",
+      image: "/blog/salad.webp",
     },
     {
       id: 2,
-      title: "Quick Snacks with Fresh Ingredients",
+      title: "How to Choose Fresh Meat & Fish",
       date: "05-06-2025",
       description:
-        "Make your special day truly unforgettable with our personalized Water Lantern",
+        "Learn simple tips to pick the freshest meat and seafood for tasty and safe home-cooked meals.",
       image: "/blog/2.png",
     },
     {
       id: 3,
-      title: "Secrets to Perfect Pasta Every Time",
+      title: "Top 10 Grocery Shopping Hacks",
       date: "05-06-2025",
       description:
-        "Make your special day truly unforgettable with our personalized Water Lantern",
+        "Save time and money with these smart supermarket tips, from planning your list to finding the best deals.",
       image: "/blog/3.png",
     },
     {
@@ -85,7 +85,10 @@ const OurBlog = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-black mb-2">
             Our Blog
           </h2>
-          <p className="text-gray-600 text-lg">Checkout our Latest Blog</p>
+          <p className="text-gray-600 text-lg">
+            Get tips, recipes, and shopping guides for a healthier, smarter
+            lifestyle.
+          </p>
         </div>
 
         {/* Navigation Arrows */}

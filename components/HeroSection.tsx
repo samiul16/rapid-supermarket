@@ -19,13 +19,12 @@ const HeroSection = () => {
       image: "/landing/supermarket-hero-1.png",
       title: (
         <>
-          Organic <span className="text-green-600">Goodness</span>
-          <br />
-          EveryDay Greatness
+          <span className="text-green-600">Fresh Groceries </span>
+          for a Fresh Day
         </>
       ),
       subtitle:
-        "Experience world-class apparel design and production. From initial concept to completion, we deliver meticulously crafted clothing that meets international standards for quality and style.",
+        "Vegetables, fruits, meat, dairy, and household essentials—everything fresh, fast, and right at your doorstep.",
     },
     {
       image: "/landing/supermarket-hero-1.png",

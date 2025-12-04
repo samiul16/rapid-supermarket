@@ -33,101 +33,132 @@ const HotProductsSection = () => {
 
   const categories = [
     "All",
-    "Arabian",
-    "Italian",
-    "Indian",
-    "Chinese",
-    "Bangladeshi",
+    "Snacks & Beverages",
+    "Vegetables & Fruits",
+    "Meat",
+    "Fish",
   ];
 
   const products: Product[] = [
     {
       id: 1,
-      title: "Capsicum",
-      subtitle: "Fresh Capsicum. Finely chopped.",
+      title: "Chocolate Bar",
+      subtitle: "Sweet indulgence for any time of the day.",
       price: 290,
       rating: 5.0,
       reviews: 12,
-      image:
-        "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?w=400&q=80",
-      category: "Arabian",
+      image: "/snacks-beverage/Chocolate Bar.png",
+      category: "Snacks & Beverages",
     },
     {
       id: 2,
-      title: "Orange",
-      subtitle: "Fresh Orange. Directly from farm.",
+      title: "Orange Juice",
+      subtitle: "Freshly squeezed taste, packed with vitamin C.",
       price: 290,
       rating: 5.0,
       reviews: 12,
-      image:
-        "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&q=80",
-      category: "Italian",
+      image: "/snacks-beverage/Orange Juice.png",
+      category: "Snacks & Beverages",
     },
     {
       id: 3,
-      title: "Salmon Fish",
-      subtitle: "Fresh Salmon. High in omega-3.",
+      title: "Potato Chips",
+      subtitle: "Crispy, salty, and perfect for munching.",
       price: 290,
       rating: 5.0,
       reviews: 12,
-      image:
-        "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&q=80",
-      category: "Indian",
+      image: "/snacks-beverage/Potato Chips.png",
+      category: "Snacks & Beverages",
     },
     {
       id: 4,
-      title: "Fresh Tomatoes",
-      subtitle: "Organic red tomatoes. Perfect for cooking.",
+      title: "Banana",
+      subtitle: "Sweet and ripe, a healthy snack for all ages.",
       price: 150,
       rating: 4.8,
       reviews: 8,
-      image:
-        "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&q=80",
-      category: "Chinese",
+      image: "/vegetables-fruits/Banana.png",
+      category: "Vegetables & Fruits",
     },
     {
       id: 5,
-      title: "Basmati Rice",
-      subtitle: "Premium quality long grain rice from Bangladesh.",
+      title: "Spinach",
+      subtitle: "Fresh leafy greens, full of nutrients for daily meals.",
       price: 450,
       rating: 5.0,
       reviews: 20,
-      image:
-        "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
-      category: "Bangladeshi",
+      image: "/vegetables-fruits/Spinach.png",
+      category: "Vegetables & Fruits",
     },
     {
       id: 6,
-      title: "Fresh Carrots",
-      subtitle: "Organic carrots. Rich in vitamins and minerals.",
+      title: "Tomatoes",
+      subtitle: "Juicy and fresh, perfect for salads and cooking.",
       price: 320,
       rating: 4.9,
       reviews: 15,
-      image:
-        "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=400&q=80",
-      category: "Arabian",
+      image: "/vegetables-fruits/Tomatoes.png",
+      category: "Vegetables & Fruits",
     },
     {
       id: 7,
-      title: "Pasta",
-      subtitle: "Authentic Italian pasta. Perfect for family meals.",
+      title: "Beef mince",
+      subtitle: "High-quality minced beef for delicious recipes.",
       price: 180,
       rating: 4.7,
       reviews: 10,
-      image:
-        "https://images.unsplash.com/photo-1551892374-ecf8754cf8b0?w=400&q=80",
-      category: "Italian",
+      image: "/meat/Beef mince.png",
+      category: "Meat",
     },
     {
       id: 8,
-      title: "Spices Mix",
-      subtitle: "Traditional Indian spice blend. Authentic flavors.",
+      title: "Chicken Breast",
+      subtitle: "Lean and tender, ideal for grilling or roasting.",
       price: 220,
       rating: 4.9,
       reviews: 18,
-      image:
-        "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&q=80",
-      category: "Indian",
+      image: "/meat/Chicken Breast.png",
+      category: "Meat",
+    },
+    {
+      id: 9,
+      title: "Lamb Chops",
+      subtitle: "Fresh, juicy lamb chops for a perfect dinner.",
+      price: 220,
+      rating: 4.9,
+      reviews: 18,
+      image: "/meat/Lamb Chops.png",
+      category: "Meat",
+    },
+    {
+      id: 10,
+      title: "Prawns",
+      subtitle: "Juicy, succulent, and ready to enhance your dishes.",
+      price: 220,
+      rating: 4.9,
+      reviews: 18,
+      image: "/fish/Prawns.png",
+      category: "Fish",
+    },
+    {
+      id: 11,
+      title: "Salmon Fillet",
+      subtitle: "Rich and flavorful, perfect for healthy meals.",
+      price: 220,
+      rating: 4.9,
+      reviews: 18,
+      image: "/fish/Salmon Fillet.png",
+      category: "Fish",
+    },
+    {
+      id: 12,
+      title: "Tilapia",
+      subtitle: "Fresh and firm, easy to cook any way you like.",
+      price: 220,
+      rating: 4.9,
+      reviews: 18,
+      image: "/fish/Tilapia.png",
+      category: "Fish",
     },
   ];
 
@@ -258,7 +289,10 @@ const HotProductsSection = () => {
           </h2>
 
           {/* Category Filter - Updated with exact dimensions */}
-          <div className="bg-white rounded-[50px] shadow-[0px_0px_6px_0px_rgba(0,0,0,0.10)] px-6 sm:px-10 py-4 border-[1px] border-[#a40b00] flex flex-wrap justify-center items-center gap-4 sm:gap-6">
+          <div
+            className="bg-white rounded-[50px] shadow-[0_0_20px_4px_rgba(255,0,0,0.20)]
+ px-6 sm:px-10 py-4 border-[1px] border-[#a40b00] flex flex-wrap justify-center items-center gap-4 sm:gap-6"
+          >
             {categories.map((category) => (
               <motion.button
                 key={category}
@@ -319,7 +353,8 @@ const HotProductsSection = () => {
                 {getCurrentProducts().map((product) => (
                   <motion.div
                     key={product.id}
-                    className="group bg-[#a40b00]/10 rounded-[20px] shadow-[4px_6px_16px_0px_rgba(0,0,0,0.10)] overflow-hidden hover:shadow-[4px_10px_24px_0px_rgba(0,0,0,0.15)] transition-all duration-300"
+                    className="group bg-gray-50 rounded-[20px] shadow-[0_0_20px_4px_rgba(255,0,0,0.20)]
+ overflow-hidden hover:shadow-[4px_10px_24px_0px_rgba(0,0,0,0.15)] transition-all duration-300"
                     variants={cardVariants}
                     whileHover={{ y: -8 }}
                   >
